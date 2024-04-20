@@ -19,8 +19,9 @@ mixin _$Feature {
   String get name => throw _privateConstructorUsedError;
   FeatureType get type => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
-  dynamic get geometry => throw _privateConstructorUsedError;
+  GeoJSONGeometry get geometry => throw _privateConstructorUsedError;
   int? get level => throw _privateConstructorUsedError;
+  String? get building => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FeatureCopyWith<Feature> get copyWith => throw _privateConstructorUsedError;
@@ -35,8 +36,9 @@ abstract class $FeatureCopyWith<$Res> {
       {String name,
       FeatureType type,
       String? description,
-      dynamic geometry,
-      int? level});
+      GeoJSONGeometry geometry,
+      int? level,
+      String? building});
 
   $FeatureTypeCopyWith<$Res> get type;
 }
@@ -57,8 +59,9 @@ class _$FeatureCopyWithImpl<$Res, $Val extends Feature>
     Object? name = null,
     Object? type = null,
     Object? description = freezed,
-    Object? geometry = freezed,
+    Object? geometry = null,
     Object? level = freezed,
+    Object? building = freezed,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -73,14 +76,18 @@ class _$FeatureCopyWithImpl<$Res, $Val extends Feature>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      geometry: freezed == geometry
+      geometry: null == geometry
           ? _value.geometry
           : geometry // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as GeoJSONGeometry,
       level: freezed == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
               as int?,
+      building: freezed == building
+          ? _value.building
+          : building // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -104,8 +111,9 @@ abstract class _$$FeatureImplCopyWith<$Res> implements $FeatureCopyWith<$Res> {
       {String name,
       FeatureType type,
       String? description,
-      dynamic geometry,
-      int? level});
+      GeoJSONGeometry geometry,
+      int? level,
+      String? building});
 
   @override
   $FeatureTypeCopyWith<$Res> get type;
@@ -125,8 +133,9 @@ class __$$FeatureImplCopyWithImpl<$Res>
     Object? name = null,
     Object? type = null,
     Object? description = freezed,
-    Object? geometry = freezed,
+    Object? geometry = null,
     Object? level = freezed,
+    Object? building = freezed,
   }) {
     return _then(_$FeatureImpl(
       name: null == name
@@ -141,14 +150,18 @@ class __$$FeatureImplCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
-      geometry: freezed == geometry
+      geometry: null == geometry
           ? _value.geometry
           : geometry // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+              as GeoJSONGeometry,
       level: freezed == level
           ? _value.level
           : level // ignore: cast_nullable_to_non_nullable
               as int?,
+      building: freezed == building
+          ? _value.building
+          : building // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -161,7 +174,8 @@ class _$FeatureImpl extends _Feature {
       required this.type,
       this.description,
       required this.geometry,
-      this.level})
+      this.level,
+      this.building})
       : super._();
 
   @override
@@ -171,13 +185,15 @@ class _$FeatureImpl extends _Feature {
   @override
   final String? description;
   @override
-  final dynamic geometry;
+  final GeoJSONGeometry geometry;
   @override
   final int? level;
+  @override
+  final String? building;
 
   @override
   String toString() {
-    return 'Feature(name: $name, type: $type, description: $description, geometry: $geometry, level: $level)';
+    return 'Feature(name: $name, type: $type, description: $description, geometry: $geometry, level: $level, building: $building)';
   }
 
   @override
@@ -189,13 +205,16 @@ class _$FeatureImpl extends _Feature {
             (identical(other.type, type) || other.type == type) &&
             (identical(other.description, description) ||
                 other.description == description) &&
-            const DeepCollectionEquality().equals(other.geometry, geometry) &&
-            (identical(other.level, level) || other.level == level));
+            (identical(other.geometry, geometry) ||
+                other.geometry == geometry) &&
+            (identical(other.level, level) || other.level == level) &&
+            (identical(other.building, building) ||
+                other.building == building));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, type, description,
-      const DeepCollectionEquality().hash(geometry), level);
+  int get hashCode => Object.hash(
+      runtimeType, name, type, description, geometry, level, building);
 
   @JsonKey(ignore: true)
   @override
@@ -209,8 +228,9 @@ abstract class _Feature extends Feature {
       {required final String name,
       required final FeatureType type,
       final String? description,
-      required final dynamic geometry,
-      final int? level}) = _$FeatureImpl;
+      required final GeoJSONGeometry geometry,
+      final int? level,
+      final String? building}) = _$FeatureImpl;
   const _Feature._() : super._();
 
   @override
@@ -220,9 +240,11 @@ abstract class _Feature extends Feature {
   @override
   String? get description;
   @override
-  dynamic get geometry;
+  GeoJSONGeometry get geometry;
   @override
   int? get level;
+  @override
+  String? get building;
   @override
   @JsonKey(ignore: true)
   _$$FeatureImplCopyWith<_$FeatureImpl> get copyWith =>
@@ -238,7 +260,6 @@ mixin _$FeatureType {
     required TResult Function() room,
     required TResult Function(List<String> connects) door,
     required TResult Function(String toilet_type) toilet,
-    required TResult Function() entrance,
     required TResult Function(List<int> connects_levels) stairs,
     required TResult Function(List<int> connects_levels) lift,
     required TResult Function(List<String> bus_lines, List<String> tram_lines)
@@ -252,7 +273,6 @@ mixin _$FeatureType {
     TResult? Function()? room,
     TResult? Function(List<String> connects)? door,
     TResult? Function(String toilet_type)? toilet,
-    TResult? Function()? entrance,
     TResult? Function(List<int> connects_levels)? stairs,
     TResult? Function(List<int> connects_levels)? lift,
     TResult? Function(List<String> bus_lines, List<String> tram_lines)?
@@ -266,7 +286,6 @@ mixin _$FeatureType {
     TResult Function()? room,
     TResult Function(List<String> connects)? door,
     TResult Function(String toilet_type)? toilet,
-    TResult Function()? entrance,
     TResult Function(List<int> connects_levels)? stairs,
     TResult Function(List<int> connects_levels)? lift,
     TResult Function(List<String> bus_lines, List<String> tram_lines)?
@@ -281,7 +300,6 @@ mixin _$FeatureType {
     required TResult Function(Room value) room,
     required TResult Function(Door value) door,
     required TResult Function(Toilet value) toilet,
-    required TResult Function(Entrance value) entrance,
     required TResult Function(Stairs value) stairs,
     required TResult Function(Lift value) lift,
     required TResult Function(PublicTransport value) publicTransport,
@@ -294,7 +312,6 @@ mixin _$FeatureType {
     TResult? Function(Room value)? room,
     TResult? Function(Door value)? door,
     TResult? Function(Toilet value)? toilet,
-    TResult? Function(Entrance value)? entrance,
     TResult? Function(Stairs value)? stairs,
     TResult? Function(Lift value)? lift,
     TResult? Function(PublicTransport value)? publicTransport,
@@ -307,7 +324,6 @@ mixin _$FeatureType {
     TResult Function(Room value)? room,
     TResult Function(Door value)? door,
     TResult Function(Toilet value)? toilet,
-    TResult Function(Entrance value)? entrance,
     TResult Function(Stairs value)? stairs,
     TResult Function(Lift value)? lift,
     TResult Function(PublicTransport value)? publicTransport,
@@ -377,7 +393,6 @@ class _$BuildingImpl implements Building {
     required TResult Function() room,
     required TResult Function(List<String> connects) door,
     required TResult Function(String toilet_type) toilet,
-    required TResult Function() entrance,
     required TResult Function(List<int> connects_levels) stairs,
     required TResult Function(List<int> connects_levels) lift,
     required TResult Function(List<String> bus_lines, List<String> tram_lines)
@@ -394,7 +409,6 @@ class _$BuildingImpl implements Building {
     TResult? Function()? room,
     TResult? Function(List<String> connects)? door,
     TResult? Function(String toilet_type)? toilet,
-    TResult? Function()? entrance,
     TResult? Function(List<int> connects_levels)? stairs,
     TResult? Function(List<int> connects_levels)? lift,
     TResult? Function(List<String> bus_lines, List<String> tram_lines)?
@@ -411,7 +425,6 @@ class _$BuildingImpl implements Building {
     TResult Function()? room,
     TResult Function(List<String> connects)? door,
     TResult Function(String toilet_type)? toilet,
-    TResult Function()? entrance,
     TResult Function(List<int> connects_levels)? stairs,
     TResult Function(List<int> connects_levels)? lift,
     TResult Function(List<String> bus_lines, List<String> tram_lines)?
@@ -432,7 +445,6 @@ class _$BuildingImpl implements Building {
     required TResult Function(Room value) room,
     required TResult Function(Door value) door,
     required TResult Function(Toilet value) toilet,
-    required TResult Function(Entrance value) entrance,
     required TResult Function(Stairs value) stairs,
     required TResult Function(Lift value) lift,
     required TResult Function(PublicTransport value) publicTransport,
@@ -448,7 +460,6 @@ class _$BuildingImpl implements Building {
     TResult? Function(Room value)? room,
     TResult? Function(Door value)? door,
     TResult? Function(Toilet value)? toilet,
-    TResult? Function(Entrance value)? entrance,
     TResult? Function(Stairs value)? stairs,
     TResult? Function(Lift value)? lift,
     TResult? Function(PublicTransport value)? publicTransport,
@@ -464,7 +475,6 @@ class _$BuildingImpl implements Building {
     TResult Function(Room value)? room,
     TResult Function(Door value)? door,
     TResult Function(Toilet value)? toilet,
-    TResult Function(Entrance value)? entrance,
     TResult Function(Stairs value)? stairs,
     TResult Function(Lift value)? lift,
     TResult Function(PublicTransport value)? publicTransport,
@@ -524,7 +534,6 @@ class _$LectureHallImpl implements LectureHall {
     required TResult Function() room,
     required TResult Function(List<String> connects) door,
     required TResult Function(String toilet_type) toilet,
-    required TResult Function() entrance,
     required TResult Function(List<int> connects_levels) stairs,
     required TResult Function(List<int> connects_levels) lift,
     required TResult Function(List<String> bus_lines, List<String> tram_lines)
@@ -541,7 +550,6 @@ class _$LectureHallImpl implements LectureHall {
     TResult? Function()? room,
     TResult? Function(List<String> connects)? door,
     TResult? Function(String toilet_type)? toilet,
-    TResult? Function()? entrance,
     TResult? Function(List<int> connects_levels)? stairs,
     TResult? Function(List<int> connects_levels)? lift,
     TResult? Function(List<String> bus_lines, List<String> tram_lines)?
@@ -558,7 +566,6 @@ class _$LectureHallImpl implements LectureHall {
     TResult Function()? room,
     TResult Function(List<String> connects)? door,
     TResult Function(String toilet_type)? toilet,
-    TResult Function()? entrance,
     TResult Function(List<int> connects_levels)? stairs,
     TResult Function(List<int> connects_levels)? lift,
     TResult Function(List<String> bus_lines, List<String> tram_lines)?
@@ -579,7 +586,6 @@ class _$LectureHallImpl implements LectureHall {
     required TResult Function(Room value) room,
     required TResult Function(Door value) door,
     required TResult Function(Toilet value) toilet,
-    required TResult Function(Entrance value) entrance,
     required TResult Function(Stairs value) stairs,
     required TResult Function(Lift value) lift,
     required TResult Function(PublicTransport value) publicTransport,
@@ -595,7 +601,6 @@ class _$LectureHallImpl implements LectureHall {
     TResult? Function(Room value)? room,
     TResult? Function(Door value)? door,
     TResult? Function(Toilet value)? toilet,
-    TResult? Function(Entrance value)? entrance,
     TResult? Function(Stairs value)? stairs,
     TResult? Function(Lift value)? lift,
     TResult? Function(PublicTransport value)? publicTransport,
@@ -611,7 +616,6 @@ class _$LectureHallImpl implements LectureHall {
     TResult Function(Room value)? room,
     TResult Function(Door value)? door,
     TResult Function(Toilet value)? toilet,
-    TResult Function(Entrance value)? entrance,
     TResult Function(Stairs value)? stairs,
     TResult Function(Lift value)? lift,
     TResult Function(PublicTransport value)? publicTransport,
@@ -670,7 +674,6 @@ class _$RoomImpl implements Room {
     required TResult Function() room,
     required TResult Function(List<String> connects) door,
     required TResult Function(String toilet_type) toilet,
-    required TResult Function() entrance,
     required TResult Function(List<int> connects_levels) stairs,
     required TResult Function(List<int> connects_levels) lift,
     required TResult Function(List<String> bus_lines, List<String> tram_lines)
@@ -687,7 +690,6 @@ class _$RoomImpl implements Room {
     TResult? Function()? room,
     TResult? Function(List<String> connects)? door,
     TResult? Function(String toilet_type)? toilet,
-    TResult? Function()? entrance,
     TResult? Function(List<int> connects_levels)? stairs,
     TResult? Function(List<int> connects_levels)? lift,
     TResult? Function(List<String> bus_lines, List<String> tram_lines)?
@@ -704,7 +706,6 @@ class _$RoomImpl implements Room {
     TResult Function()? room,
     TResult Function(List<String> connects)? door,
     TResult Function(String toilet_type)? toilet,
-    TResult Function()? entrance,
     TResult Function(List<int> connects_levels)? stairs,
     TResult Function(List<int> connects_levels)? lift,
     TResult Function(List<String> bus_lines, List<String> tram_lines)?
@@ -725,7 +726,6 @@ class _$RoomImpl implements Room {
     required TResult Function(Room value) room,
     required TResult Function(Door value) door,
     required TResult Function(Toilet value) toilet,
-    required TResult Function(Entrance value) entrance,
     required TResult Function(Stairs value) stairs,
     required TResult Function(Lift value) lift,
     required TResult Function(PublicTransport value) publicTransport,
@@ -741,7 +741,6 @@ class _$RoomImpl implements Room {
     TResult? Function(Room value)? room,
     TResult? Function(Door value)? door,
     TResult? Function(Toilet value)? toilet,
-    TResult? Function(Entrance value)? entrance,
     TResult? Function(Stairs value)? stairs,
     TResult? Function(Lift value)? lift,
     TResult? Function(PublicTransport value)? publicTransport,
@@ -757,7 +756,6 @@ class _$RoomImpl implements Room {
     TResult Function(Room value)? room,
     TResult Function(Door value)? door,
     TResult Function(Toilet value)? toilet,
-    TResult Function(Entrance value)? entrance,
     TResult Function(Stairs value)? stairs,
     TResult Function(Lift value)? lift,
     TResult Function(PublicTransport value)? publicTransport,
@@ -848,7 +846,6 @@ class _$DoorImpl implements Door {
     required TResult Function() room,
     required TResult Function(List<String> connects) door,
     required TResult Function(String toilet_type) toilet,
-    required TResult Function() entrance,
     required TResult Function(List<int> connects_levels) stairs,
     required TResult Function(List<int> connects_levels) lift,
     required TResult Function(List<String> bus_lines, List<String> tram_lines)
@@ -865,7 +862,6 @@ class _$DoorImpl implements Door {
     TResult? Function()? room,
     TResult? Function(List<String> connects)? door,
     TResult? Function(String toilet_type)? toilet,
-    TResult? Function()? entrance,
     TResult? Function(List<int> connects_levels)? stairs,
     TResult? Function(List<int> connects_levels)? lift,
     TResult? Function(List<String> bus_lines, List<String> tram_lines)?
@@ -882,7 +878,6 @@ class _$DoorImpl implements Door {
     TResult Function()? room,
     TResult Function(List<String> connects)? door,
     TResult Function(String toilet_type)? toilet,
-    TResult Function()? entrance,
     TResult Function(List<int> connects_levels)? stairs,
     TResult Function(List<int> connects_levels)? lift,
     TResult Function(List<String> bus_lines, List<String> tram_lines)?
@@ -903,7 +898,6 @@ class _$DoorImpl implements Door {
     required TResult Function(Room value) room,
     required TResult Function(Door value) door,
     required TResult Function(Toilet value) toilet,
-    required TResult Function(Entrance value) entrance,
     required TResult Function(Stairs value) stairs,
     required TResult Function(Lift value) lift,
     required TResult Function(PublicTransport value) publicTransport,
@@ -919,7 +913,6 @@ class _$DoorImpl implements Door {
     TResult? Function(Room value)? room,
     TResult? Function(Door value)? door,
     TResult? Function(Toilet value)? toilet,
-    TResult? Function(Entrance value)? entrance,
     TResult? Function(Stairs value)? stairs,
     TResult? Function(Lift value)? lift,
     TResult? Function(PublicTransport value)? publicTransport,
@@ -935,7 +928,6 @@ class _$DoorImpl implements Door {
     TResult Function(Room value)? room,
     TResult Function(Door value)? door,
     TResult Function(Toilet value)? toilet,
-    TResult Function(Entrance value)? entrance,
     TResult Function(Stairs value)? stairs,
     TResult Function(Lift value)? lift,
     TResult Function(PublicTransport value)? publicTransport,
@@ -1027,7 +1019,6 @@ class _$ToiletImpl implements Toilet {
     required TResult Function() room,
     required TResult Function(List<String> connects) door,
     required TResult Function(String toilet_type) toilet,
-    required TResult Function() entrance,
     required TResult Function(List<int> connects_levels) stairs,
     required TResult Function(List<int> connects_levels) lift,
     required TResult Function(List<String> bus_lines, List<String> tram_lines)
@@ -1044,7 +1035,6 @@ class _$ToiletImpl implements Toilet {
     TResult? Function()? room,
     TResult? Function(List<String> connects)? door,
     TResult? Function(String toilet_type)? toilet,
-    TResult? Function()? entrance,
     TResult? Function(List<int> connects_levels)? stairs,
     TResult? Function(List<int> connects_levels)? lift,
     TResult? Function(List<String> bus_lines, List<String> tram_lines)?
@@ -1061,7 +1051,6 @@ class _$ToiletImpl implements Toilet {
     TResult Function()? room,
     TResult Function(List<String> connects)? door,
     TResult Function(String toilet_type)? toilet,
-    TResult Function()? entrance,
     TResult Function(List<int> connects_levels)? stairs,
     TResult Function(List<int> connects_levels)? lift,
     TResult Function(List<String> bus_lines, List<String> tram_lines)?
@@ -1082,7 +1071,6 @@ class _$ToiletImpl implements Toilet {
     required TResult Function(Room value) room,
     required TResult Function(Door value) door,
     required TResult Function(Toilet value) toilet,
-    required TResult Function(Entrance value) entrance,
     required TResult Function(Stairs value) stairs,
     required TResult Function(Lift value) lift,
     required TResult Function(PublicTransport value) publicTransport,
@@ -1098,7 +1086,6 @@ class _$ToiletImpl implements Toilet {
     TResult? Function(Room value)? room,
     TResult? Function(Door value)? door,
     TResult? Function(Toilet value)? toilet,
-    TResult? Function(Entrance value)? entrance,
     TResult? Function(Stairs value)? stairs,
     TResult? Function(Lift value)? lift,
     TResult? Function(PublicTransport value)? publicTransport,
@@ -1114,7 +1101,6 @@ class _$ToiletImpl implements Toilet {
     TResult Function(Room value)? room,
     TResult Function(Door value)? door,
     TResult Function(Toilet value)? toilet,
-    TResult Function(Entrance value)? entrance,
     TResult Function(Stairs value)? stairs,
     TResult Function(Lift value)? lift,
     TResult Function(PublicTransport value)? publicTransport,
@@ -1134,153 +1120,6 @@ abstract class Toilet implements FeatureType {
   @JsonKey(ignore: true)
   _$$ToiletImplCopyWith<_$ToiletImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$EntranceImplCopyWith<$Res> {
-  factory _$$EntranceImplCopyWith(
-          _$EntranceImpl value, $Res Function(_$EntranceImpl) then) =
-      __$$EntranceImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$EntranceImplCopyWithImpl<$Res>
-    extends _$FeatureTypeCopyWithImpl<$Res, _$EntranceImpl>
-    implements _$$EntranceImplCopyWith<$Res> {
-  __$$EntranceImplCopyWithImpl(
-      _$EntranceImpl _value, $Res Function(_$EntranceImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$EntranceImpl implements Entrance {
-  const _$EntranceImpl();
-
-  @override
-  String toString() {
-    return 'FeatureType.entrance()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$EntranceImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() building,
-    required TResult Function() lectureHall,
-    required TResult Function() room,
-    required TResult Function(List<String> connects) door,
-    required TResult Function(String toilet_type) toilet,
-    required TResult Function() entrance,
-    required TResult Function(List<int> connects_levels) stairs,
-    required TResult Function(List<int> connects_levels) lift,
-    required TResult Function(List<String> bus_lines, List<String> tram_lines)
-        publicTransport,
-  }) {
-    return entrance();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? building,
-    TResult? Function()? lectureHall,
-    TResult? Function()? room,
-    TResult? Function(List<String> connects)? door,
-    TResult? Function(String toilet_type)? toilet,
-    TResult? Function()? entrance,
-    TResult? Function(List<int> connects_levels)? stairs,
-    TResult? Function(List<int> connects_levels)? lift,
-    TResult? Function(List<String> bus_lines, List<String> tram_lines)?
-        publicTransport,
-  }) {
-    return entrance?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? building,
-    TResult Function()? lectureHall,
-    TResult Function()? room,
-    TResult Function(List<String> connects)? door,
-    TResult Function(String toilet_type)? toilet,
-    TResult Function()? entrance,
-    TResult Function(List<int> connects_levels)? stairs,
-    TResult Function(List<int> connects_levels)? lift,
-    TResult Function(List<String> bus_lines, List<String> tram_lines)?
-        publicTransport,
-    required TResult orElse(),
-  }) {
-    if (entrance != null) {
-      return entrance();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Building value) building,
-    required TResult Function(LectureHall value) lectureHall,
-    required TResult Function(Room value) room,
-    required TResult Function(Door value) door,
-    required TResult Function(Toilet value) toilet,
-    required TResult Function(Entrance value) entrance,
-    required TResult Function(Stairs value) stairs,
-    required TResult Function(Lift value) lift,
-    required TResult Function(PublicTransport value) publicTransport,
-  }) {
-    return entrance(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Building value)? building,
-    TResult? Function(LectureHall value)? lectureHall,
-    TResult? Function(Room value)? room,
-    TResult? Function(Door value)? door,
-    TResult? Function(Toilet value)? toilet,
-    TResult? Function(Entrance value)? entrance,
-    TResult? Function(Stairs value)? stairs,
-    TResult? Function(Lift value)? lift,
-    TResult? Function(PublicTransport value)? publicTransport,
-  }) {
-    return entrance?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Building value)? building,
-    TResult Function(LectureHall value)? lectureHall,
-    TResult Function(Room value)? room,
-    TResult Function(Door value)? door,
-    TResult Function(Toilet value)? toilet,
-    TResult Function(Entrance value)? entrance,
-    TResult Function(Stairs value)? stairs,
-    TResult Function(Lift value)? lift,
-    TResult Function(PublicTransport value)? publicTransport,
-    required TResult orElse(),
-  }) {
-    if (entrance != null) {
-      return entrance(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class Entrance implements FeatureType {
-  const factory Entrance() = _$EntranceImpl;
 }
 
 /// @nodoc
@@ -1360,7 +1199,6 @@ class _$StairsImpl implements Stairs {
     required TResult Function() room,
     required TResult Function(List<String> connects) door,
     required TResult Function(String toilet_type) toilet,
-    required TResult Function() entrance,
     required TResult Function(List<int> connects_levels) stairs,
     required TResult Function(List<int> connects_levels) lift,
     required TResult Function(List<String> bus_lines, List<String> tram_lines)
@@ -1377,7 +1215,6 @@ class _$StairsImpl implements Stairs {
     TResult? Function()? room,
     TResult? Function(List<String> connects)? door,
     TResult? Function(String toilet_type)? toilet,
-    TResult? Function()? entrance,
     TResult? Function(List<int> connects_levels)? stairs,
     TResult? Function(List<int> connects_levels)? lift,
     TResult? Function(List<String> bus_lines, List<String> tram_lines)?
@@ -1394,7 +1231,6 @@ class _$StairsImpl implements Stairs {
     TResult Function()? room,
     TResult Function(List<String> connects)? door,
     TResult Function(String toilet_type)? toilet,
-    TResult Function()? entrance,
     TResult Function(List<int> connects_levels)? stairs,
     TResult Function(List<int> connects_levels)? lift,
     TResult Function(List<String> bus_lines, List<String> tram_lines)?
@@ -1415,7 +1251,6 @@ class _$StairsImpl implements Stairs {
     required TResult Function(Room value) room,
     required TResult Function(Door value) door,
     required TResult Function(Toilet value) toilet,
-    required TResult Function(Entrance value) entrance,
     required TResult Function(Stairs value) stairs,
     required TResult Function(Lift value) lift,
     required TResult Function(PublicTransport value) publicTransport,
@@ -1431,7 +1266,6 @@ class _$StairsImpl implements Stairs {
     TResult? Function(Room value)? room,
     TResult? Function(Door value)? door,
     TResult? Function(Toilet value)? toilet,
-    TResult? Function(Entrance value)? entrance,
     TResult? Function(Stairs value)? stairs,
     TResult? Function(Lift value)? lift,
     TResult? Function(PublicTransport value)? publicTransport,
@@ -1447,7 +1281,6 @@ class _$StairsImpl implements Stairs {
     TResult Function(Room value)? room,
     TResult Function(Door value)? door,
     TResult Function(Toilet value)? toilet,
-    TResult Function(Entrance value)? entrance,
     TResult Function(Stairs value)? stairs,
     TResult Function(Lift value)? lift,
     TResult Function(PublicTransport value)? publicTransport,
@@ -1545,7 +1378,6 @@ class _$LiftImpl implements Lift {
     required TResult Function() room,
     required TResult Function(List<String> connects) door,
     required TResult Function(String toilet_type) toilet,
-    required TResult Function() entrance,
     required TResult Function(List<int> connects_levels) stairs,
     required TResult Function(List<int> connects_levels) lift,
     required TResult Function(List<String> bus_lines, List<String> tram_lines)
@@ -1562,7 +1394,6 @@ class _$LiftImpl implements Lift {
     TResult? Function()? room,
     TResult? Function(List<String> connects)? door,
     TResult? Function(String toilet_type)? toilet,
-    TResult? Function()? entrance,
     TResult? Function(List<int> connects_levels)? stairs,
     TResult? Function(List<int> connects_levels)? lift,
     TResult? Function(List<String> bus_lines, List<String> tram_lines)?
@@ -1579,7 +1410,6 @@ class _$LiftImpl implements Lift {
     TResult Function()? room,
     TResult Function(List<String> connects)? door,
     TResult Function(String toilet_type)? toilet,
-    TResult Function()? entrance,
     TResult Function(List<int> connects_levels)? stairs,
     TResult Function(List<int> connects_levels)? lift,
     TResult Function(List<String> bus_lines, List<String> tram_lines)?
@@ -1600,7 +1430,6 @@ class _$LiftImpl implements Lift {
     required TResult Function(Room value) room,
     required TResult Function(Door value) door,
     required TResult Function(Toilet value) toilet,
-    required TResult Function(Entrance value) entrance,
     required TResult Function(Stairs value) stairs,
     required TResult Function(Lift value) lift,
     required TResult Function(PublicTransport value) publicTransport,
@@ -1616,7 +1445,6 @@ class _$LiftImpl implements Lift {
     TResult? Function(Room value)? room,
     TResult? Function(Door value)? door,
     TResult? Function(Toilet value)? toilet,
-    TResult? Function(Entrance value)? entrance,
     TResult? Function(Stairs value)? stairs,
     TResult? Function(Lift value)? lift,
     TResult? Function(PublicTransport value)? publicTransport,
@@ -1632,7 +1460,6 @@ class _$LiftImpl implements Lift {
     TResult Function(Room value)? room,
     TResult Function(Door value)? door,
     TResult Function(Toilet value)? toilet,
-    TResult Function(Entrance value)? entrance,
     TResult Function(Stairs value)? stairs,
     TResult Function(Lift value)? lift,
     TResult Function(PublicTransport value)? publicTransport,
@@ -1751,7 +1578,6 @@ class _$PublicTransportImpl implements PublicTransport {
     required TResult Function() room,
     required TResult Function(List<String> connects) door,
     required TResult Function(String toilet_type) toilet,
-    required TResult Function() entrance,
     required TResult Function(List<int> connects_levels) stairs,
     required TResult Function(List<int> connects_levels) lift,
     required TResult Function(List<String> bus_lines, List<String> tram_lines)
@@ -1768,7 +1594,6 @@ class _$PublicTransportImpl implements PublicTransport {
     TResult? Function()? room,
     TResult? Function(List<String> connects)? door,
     TResult? Function(String toilet_type)? toilet,
-    TResult? Function()? entrance,
     TResult? Function(List<int> connects_levels)? stairs,
     TResult? Function(List<int> connects_levels)? lift,
     TResult? Function(List<String> bus_lines, List<String> tram_lines)?
@@ -1785,7 +1610,6 @@ class _$PublicTransportImpl implements PublicTransport {
     TResult Function()? room,
     TResult Function(List<String> connects)? door,
     TResult Function(String toilet_type)? toilet,
-    TResult Function()? entrance,
     TResult Function(List<int> connects_levels)? stairs,
     TResult Function(List<int> connects_levels)? lift,
     TResult Function(List<String> bus_lines, List<String> tram_lines)?
@@ -1806,7 +1630,6 @@ class _$PublicTransportImpl implements PublicTransport {
     required TResult Function(Room value) room,
     required TResult Function(Door value) door,
     required TResult Function(Toilet value) toilet,
-    required TResult Function(Entrance value) entrance,
     required TResult Function(Stairs value) stairs,
     required TResult Function(Lift value) lift,
     required TResult Function(PublicTransport value) publicTransport,
@@ -1822,7 +1645,6 @@ class _$PublicTransportImpl implements PublicTransport {
     TResult? Function(Room value)? room,
     TResult? Function(Door value)? door,
     TResult? Function(Toilet value)? toilet,
-    TResult? Function(Entrance value)? entrance,
     TResult? Function(Stairs value)? stairs,
     TResult? Function(Lift value)? lift,
     TResult? Function(PublicTransport value)? publicTransport,
@@ -1838,7 +1660,6 @@ class _$PublicTransportImpl implements PublicTransport {
     TResult Function(Room value)? room,
     TResult Function(Door value)? door,
     TResult Function(Toilet value)? toilet,
-    TResult Function(Entrance value)? entrance,
     TResult Function(Stairs value)? stairs,
     TResult Function(Lift value)? lift,
     TResult Function(PublicTransport value)? publicTransport,

@@ -10,6 +10,7 @@ import 'package:uninav/components/hamburger_menu.dart';
 import 'package:uninav/components/map_render_level.dart';
 import 'package:uninav/controllers/map_controller.dart';
 import 'package:uninav/data/geo/model.dart';
+import 'package:uninav/util/geojson_util.dart';
 import 'package:uninav/util/geomath.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -50,96 +51,65 @@ class MapPage extends StatelessWidget {
         body: Stack(
           children: [
             FlutterMap(
-              mapController: MapController(),
+              mapController: Get.find<MyMapController>().mapController,
               options: MapOptions(
                 initialCenter: const LatLng(48.422766, 9.9564),
                 initialZoom: 16.0,
                 // camera constraints
                 maxZoom: 19,
-                onTap: (tapPosition, latlng) => print(tapPosition),
+                onTap: (tapPosition, point) {
+                  print('Tap: $tapPosition, $point');
+                  Get.find<MyMapController>().handleTap(tapPosition, point);
+                },
               ),
               children: [
                 TileLayer(
                   urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                   maxZoom: 19,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    print("tap");
-                    final LayerHitResult? hit = hitNotifier.value;
-                    if (hit == null) {
-                      return;
-                    }
-
-                    print("not null");
-                    print(hit.coordinate);
-                    hit.printInfo();
-                    print(hit.hitValues);
-
-                    for (final hitValue in hit.hitValues) {
-                      print(hitValue);
-                    }
-                    // Handle the hit, which in this case is a tap
-                    // For example, see the example in Hit Handling (below)
-                  },
-                  child: MouseRegion(
-                    cursor: SystemMouseCursors.click,
-                    child: Stack(
-                      children: [
-                        // buildings
-                        LevelLayer(
-                          filter: (feature) => feature.type is Building,
-                          notifier: hitNotifier,
-                        ),
-
-                        // public transport
-                        LevelLayer(
-                          filter: (feature) =>
-                              feature.level == null &&
-                              feature.type is PublicTransport,
-                          polyCenterMarkerConstructor: (center, name) => Marker(
-                            width: 100,
-                            height: 100,
-                            point: center,
-                            child: const Icon(
-                              Icons.train,
-                              color: Colors.black,
-                            ),
-                            alignment: Alignment.center,
-                          ),
-                          polyConstructor: (feature) => feature
-                              .getPolygon(
-                                  constructor: (pts) => Polygon(
-                                        points: pts,
-                                        color: Colors.green.withOpacity(0.2),
-                                        borderColor: Colors.green,
-                                        borderStrokeWidth: 1,
-                                        hitValue: feature,
-                                      ))
-                              .unwrap(),
-                          notifier: hitNotifier,
-                        ),
-
-                        // current level
-                        Obx(
-                          () => Stack(
-                              children: renderLevel(
-                                  Get.find<MyMapController>()
-                                      .currentLevel
-                                      .value,
-                                  hitNotifier: hitNotifier)),
-                        ),
-
-                        // RichAttributionWidget(attributions: [
-                        //   TextSourceAttribution(
-                        //     'OpenStreetMap contributors',
-                        //     onTap: () =>
-                        //         launchUrl(Uri.parse('https://openstreetmap.org/copyright')),
-                        //   )
-                        // ]),
-                      ],
-                    ),
+                TranslucentPointer(
+                  child: LevelLayer(
+                    filter: (feature) => feature.type is Building,
+                    notifier: hitNotifier,
                   ),
+                ),
+
+                // public transport
+                TranslucentPointer(
+                  child: LevelLayer(
+                    filter: (feature) =>
+                        feature.level == null &&
+                        feature.type is PublicTransport,
+                    polyCenterMarkerConstructor: (center, name) => Marker(
+                      width: 100,
+                      height: 100,
+                      point: center,
+                      child: const Icon(
+                        Icons.train,
+                        color: Colors.black,
+                      ),
+                      alignment: Alignment.center,
+                    ),
+                    polyConstructor: (feature) => feature
+                        .getPolygon(
+                            constructor: (pts) => Polygon(
+                                  points: pts,
+                                  color: Colors.green.withOpacity(0.2),
+                                  borderColor: Colors.green,
+                                  borderStrokeWidth: 1,
+                                  hitValue: feature,
+                                ))
+                        .unwrap(),
+                    notifier: hitNotifier,
+                  ),
+                ),
+
+                // current level
+                Obx(
+                  () => Stack(
+                      children: renderLevel(
+                          Get.find<MyMapController>().currentLevel.value,
+                          hitNotifier: hitNotifier)),
                 ),
               ],
             ),

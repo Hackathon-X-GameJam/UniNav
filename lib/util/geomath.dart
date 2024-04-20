@@ -35,3 +35,24 @@ LatLng polygonCenterAvg(List<LatLng> polygon) {
 
   return LatLng(centerLat, centerLng);
 }
+
+bool isPointInPolygonRaycast(LatLng point, List<LatLng> polygon) {
+  bool inside = false;
+  int len = polygon.length;
+
+  for (int i = 0, j = len - 1; i < len; j = i++) {
+    LatLng pi = polygon[i];
+    LatLng pj = polygon[j];
+
+    if (((pi.latitude > point.latitude) != (pj.latitude > point.latitude)) &&
+        (point.longitude <
+            (pj.longitude - pi.longitude) *
+                    (point.latitude - pi.latitude) /
+                    (pj.latitude - pi.latitude) +
+                pi.longitude)) {
+      inside = !inside;
+    }
+  }
+
+  return inside;
+}

@@ -97,7 +97,8 @@
       "type": "Feature",
       "properties": {
         "name": "O27",
-        "layer": "buildings"
+        "layer": "buildings",
+        "description": "connections: [o26, o28]"
       },
       "geometry": {
         "type": "Polygon",
@@ -294,7 +295,8 @@
       "type": "Feature",
       "properties": {
         "name": "O28",
-        "layer": "buildings"
+        "layer": "buildings",
+        "description": "connections: [o27, o29]"
       },
       "geometry": {
         "type": "Polygon",
@@ -345,7 +347,8 @@
       "type": "Feature",
       "properties": {
         "name": "O29",
-        "layer": "buildings"
+        "layer": "buildings",
+        "description": "connections: o28"
       },
       "geometry": {
         "type": "Polygon",
@@ -380,7 +383,8 @@
       "type": "Feature",
       "properties": {
         "name": "O25",
-        "layer": "buildings"
+        "layer": "buildings",
+        "description": "connections: [o26, mensa]"
       },
       "geometry": {
         "type": "Polygon",
@@ -570,6 +574,146 @@
         ]
       },
       "id": "YzMDM"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Mensa",
+        "layer": "buildings",
+        "description": "connections: o25\ndescription: food is served here\n"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              9.955229,
+              48.422134
+            ],
+            [
+              9.954885,
+              48.422012
+            ],
+            [
+              9.955021,
+              48.42184
+            ],
+            [
+              9.954997,
+              48.421832
+            ],
+            [
+              9.955088,
+              48.421721
+            ],
+            [
+              9.954936,
+              48.421664
+            ],
+            [
+              9.955182,
+              48.421519
+            ],
+            [
+              9.955235,
+              48.421554
+            ],
+            [
+              9.955456,
+              48.421546
+            ],
+            [
+              9.955441,
+              48.421581
+            ],
+            [
+              9.95562,
+              48.421663
+            ],
+            [
+              9.955571,
+              48.421711
+            ],
+            [
+              9.95561,
+              48.42182
+            ],
+            [
+              9.955515,
+              48.421815
+            ],
+            [
+              9.955567,
+              48.421939
+            ],
+            [
+              9.955548,
+              48.421943
+            ],
+            [
+              9.955587,
+              48.422031
+            ],
+            [
+              9.955931,
+              48.422158
+            ],
+            [
+              9.955878,
+              48.422224
+            ],
+            [
+              9.955548,
+              48.422101
+            ],
+            [
+              9.955539,
+              48.422111
+            ],
+            [
+              9.955502,
+              48.422097
+            ],
+            [
+              9.955507,
+              48.422085
+            ],
+            [
+              9.955441,
+              48.422062
+            ],
+            [
+              9.955428,
+              48.42208
+            ],
+            [
+              9.955402,
+              48.422088
+            ],
+            [
+              9.955409,
+              48.422051
+            ],
+            [
+              9.955358,
+              48.422034
+            ],
+            [
+              9.955306,
+              48.422093
+            ],
+            [
+              9.955278,
+              48.422081
+            ],
+            [
+              9.955229,
+              48.422134
+            ]
+          ]
+        ]
+      },
+      "id": "AyNjM"
     },
     {
       "type": "Feature",
@@ -1130,7 +1274,7 @@
       "type": "Feature",
       "properties": {
         "description": "type: public_transport\nbus_lines: [5, 8, 13, E, N3]\ntram_lines: [2]",
-        "name": "public_transport",
+        "name": "Universität Süd",
         "layer": "layer_public_transport"
       },
       "geometry": {
@@ -1174,7 +1318,7 @@
       "type": "Feature",
       "properties": {
         "description": "type: public_transport\nbus_lines: [5, 13, E, N3]\ntram_lines: [2]",
-        "name": "public_transport",
+        "name": "Botanischer Garten",
         "layer": "layer_public_transport"
       },
       "geometry": {

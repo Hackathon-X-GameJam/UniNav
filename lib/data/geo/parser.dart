@@ -36,6 +36,8 @@ Result<Feature> parseFeature(
   yaml = yaml as YamlMap? ?? {};
   final description = yaml['desription'] as String?;
 
+  final building = yaml['building'] as String?;
+
   print("yaml: $yaml");
 
   var raw_type = yaml['type'] as String?;
@@ -105,6 +107,7 @@ Result<Feature> parseFeature(
     description: description,
     geometry: geometry,
     level: level,
+    building: building,
   ));
 }
 
