@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:uninav/map.dart';
 
 class MyDrawer extends StatelessWidget {
   @override
@@ -20,9 +23,11 @@ class MyDrawer extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.home),
-            title: Text('Home'),
+            leading: Icon(Icons.map),
+            title: Text('Map Page'),
             onTap: () {
+              Get.back(); // close drawer
+              Get.toNamed('/map');
               // Handle menu item tap
             },
           ),
@@ -30,6 +35,8 @@ class MyDrawer extends StatelessWidget {
             leading: Icon(Icons.settings),
             title: Text('Settings'),
             onTap: () {
+              Get.back(); // close drawer
+              Get.toNamed('/settings');
               // Handle menu item tap
             },
           ),

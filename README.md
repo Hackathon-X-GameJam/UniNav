@@ -1,16 +1,8 @@
 # uninav
 
-A new Flutter project.
+App to navigate in Universities. Developed at Uni Ulm, but made to be adaptable for all other universities, or complex indoor navigation environments
 
-## Getting Started
+## Building and such 
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+run `flutter run` for running the app on your device.
+run `dart run build_runner build` to run the code generator

@@ -1,0 +1,2070 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "O26",
+        "description": "connections: [O25, O27]",
+        "layer": "buildings"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              9.956487,
+              48.422766
+            ],
+            [
+              9.956754,
+              48.422869
+            ],
+            [
+              9.956875,
+              48.422724
+            ],
+            [
+              9.956864,
+              48.422719
+            ],
+            [
+              9.956912,
+              48.422659
+            ],
+            [
+              9.956663,
+              48.422563
+            ],
+            [
+              9.956805,
+              48.422393
+            ],
+            [
+              9.956499,
+              48.422281
+            ],
+            [
+              9.956359,
+              48.42245
+            ],
+            [
+              9.956106,
+              48.422355
+            ],
+            [
+              9.956057,
+              48.422414
+            ],
+            [
+              9.95607,
+              48.422419
+            ],
+            [
+              9.955976,
+              48.42253
+            ],
+            [
+              9.955959,
+              48.422526
+            ],
+            [
+              9.955931,
+              48.422559
+            ],
+            [
+              9.95619,
+              48.422653
+            ],
+            [
+              9.956046,
+              48.422825
+            ],
+            [
+              9.956348,
+              48.422933
+            ],
+            [
+              9.956487,
+              48.422766
+            ]
+          ]
+        ]
+      },
+      "id": "E0NjM"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "O27",
+        "layer": "buildings"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              9.957511,
+              48.422725
+            ],
+            [
+              9.95749,
+              48.422716
+            ],
+            [
+              9.957505,
+              48.422703
+            ],
+            [
+              9.957501,
+              48.422687
+            ],
+            [
+              9.95752,
+              48.422666
+            ],
+            [
+              9.957304,
+              48.42259
+            ],
+            [
+              9.95714,
+              48.422781
+            ],
+            [
+              9.957071,
+              48.422793
+            ],
+            [
+              9.956872,
+              48.422723
+            ],
+            [
+              9.956754,
+              48.422869
+            ],
+            [
+              9.957041,
+              48.422971
+            ],
+            [
+              9.957057,
+              48.42301
+            ],
+            [
+              9.957013,
+              48.423063
+            ],
+            [
+              9.956992,
+              48.423067
+            ],
+            [
+              9.956977,
+              48.423086
+            ],
+            [
+              9.956978,
+              48.423105
+            ],
+            [
+              9.956937,
+              48.423155
+            ],
+            [
+              9.956951,
+              48.423159
+            ],
+            [
+              9.956942,
+              48.423163
+            ],
+            [
+              9.957128,
+              48.423232
+            ],
+            [
+              9.957134,
+              48.423228
+            ],
+            [
+              9.957148,
+              48.423235
+            ],
+            [
+              9.957313,
+              48.423032
+            ],
+            [
+              9.957367,
+              48.423022
+            ],
+            [
+              9.957596,
+              48.423104
+            ],
+            [
+              9.957717,
+              48.422963
+            ],
+            [
+              9.957557,
+              48.422903
+            ],
+            [
+              9.95758,
+              48.422903
+            ],
+            [
+              9.957604,
+              48.422864
+            ],
+            [
+              9.957598,
+              48.422852
+            ],
+            [
+              9.957604,
+              48.422853
+            ],
+            [
+              9.957634,
+              48.422817
+            ],
+            [
+              9.95761,
+              48.422752
+            ],
+            [
+              9.957552,
+              48.422732
+            ],
+            [
+              9.957516,
+              48.422737
+            ],
+            [
+              9.957511,
+              48.422725
+            ]
+          ]
+        ]
+      },
+      "id": "QwNzY"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "O28",
+        "layer": "buildings"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              9.957694,
+              48.42299
+            ],
+            [
+              9.957633,
+              48.423065
+            ],
+            [
+              9.957685,
+              48.423083
+            ],
+            [
+              9.957655,
+              48.423117
+            ],
+            [
+              9.957988,
+              48.423238
+            ],
+            [
+              9.958181,
+              48.423011
+            ],
+            [
+              9.957855,
+              48.422888
+            ],
+            [
+              9.957753,
+              48.423011
+            ],
+            [
+              9.957694,
+              48.42299
+            ]
+          ]
+        ]
+      },
+      "id": "g2OTc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "O29",
+        "layer": "buildings"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              9.957469,
+              48.423339
+            ],
+            [
+              9.957796,
+              48.423461
+            ],
+            [
+              9.957907,
+              48.423329
+            ],
+            [
+              9.957583,
+              48.423205
+            ],
+            [
+              9.957469,
+              48.423339
+            ]
+          ]
+        ]
+      },
+      "id": "gwNDk"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "O25",
+        "layer": "buildings"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              9.955818,
+              48.422616
+            ],
+            [
+              9.955785,
+              48.422601
+            ],
+            [
+              9.95577,
+              48.422642
+            ],
+            [
+              9.955799,
+              48.422687
+            ],
+            [
+              9.955697,
+              48.422756
+            ],
+            [
+              9.955543,
+              48.422697
+            ],
+            [
+              9.955557,
+              48.422639
+            ],
+            [
+              9.955538,
+              48.422633
+            ],
+            [
+              9.955527,
+              48.422642
+            ],
+            [
+              9.955314,
+              48.422563
+            ],
+            [
+              9.955325,
+              48.422551
+            ],
+            [
+              9.955048,
+              48.42245
+            ],
+            [
+              9.955055,
+              48.422444
+            ],
+            [
+              9.955036,
+              48.422436
+            ],
+            [
+              9.955056,
+              48.422407
+            ],
+            [
+              9.955237,
+              48.422373
+            ],
+            [
+              9.95524,
+              48.422384
+            ],
+            [
+              9.955286,
+              48.422377
+            ],
+            [
+              9.955311,
+              48.422345
+            ],
+            [
+              9.955327,
+              48.422336
+            ],
+            [
+              9.955121,
+              48.422257
+            ],
+            [
+              9.955229,
+              48.422134
+            ],
+            [
+              9.955276,
+              48.42208
+            ],
+            [
+              9.955304,
+              48.422091
+            ],
+            [
+              9.955358,
+              48.422031
+            ],
+            [
+              9.955408,
+              48.422053
+            ],
+            [
+              9.955404,
+              48.422089
+            ],
+            [
+              9.955424,
+              48.422081
+            ],
+            [
+              9.95544,
+              48.422062
+            ],
+            [
+              9.955503,
+              48.422086
+            ],
+            [
+              9.955498,
+              48.422097
+            ],
+            [
+              9.955538,
+              48.422112
+            ],
+            [
+              9.955548,
+              48.422102
+            ],
+            [
+              9.955877,
+              48.422225
+            ],
+            [
+              9.955889,
+              48.422207
+            ],
+            [
+              9.955986,
+              48.42224
+            ],
+            [
+              9.955944,
+              48.422297
+            ],
+            [
+              9.956104,
+              48.422357
+            ],
+            [
+              9.956058,
+              48.422415
+            ],
+            [
+              9.956069,
+              48.422422
+            ],
+            [
+              9.955976,
+              48.422532
+            ],
+            [
+              9.955959,
+              48.422527
+            ],
+            [
+              9.955933,
+              48.422558
+            ],
+            [
+              9.955913,
+              48.422553
+            ],
+            [
+              9.955818,
+              48.422616
+            ]
+          ]
+        ]
+      },
+      "id": "YzMDM"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "layer": "buildings"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": []
+      },
+      "id": "Y2OTY"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 1\ntoilet_type: male\nbuilding: o29\n\n",
+        "layer": "level_1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957543,
+          48.423354
+        ]
+      },
+      "id": "AzNzU"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "stairs",
+        "description": "type: stairs\nbuilding: o29\nconnects_levels: [1,2,3]",
+        "layer": "stairs"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957509,
+          48.423328
+        ]
+      },
+      "id": "E5MDQ"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "layer": "stairs",
+        "name": "stairs",
+        "description": "type: stairs\nbuilding: o29\nconnects_levels: [1,2,3]"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957828,
+          48.42339
+        ]
+      },
+      "id": "I1Njk"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "lift",
+        "layer": "lift",
+        "description": "type: lift\nbuilding: o29\nconnects_levels: [1, 2, 3]"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957559,
+          48.423315
+        ]
+      },
+      "id": "c0NDc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "stairs",
+        "description": "type: stairs\nbuilding: o28\nconnects_levels: [1, 2]",
+        "layer": "stairs"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957705,
+          48.423024
+        ]
+      },
+      "id": "gwNTI"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "stairs",
+        "description": "type: stairs\nbuilding: o27\nconnects_levels: [1, 2, 3, 4, 5]",
+        "layer": "stairs"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957215,
+          48.422917
+        ]
+      },
+      "id": "EzODk"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "lift",
+        "description": "type: lift\nbuilding: o27\nconnects_levels: [1, 2, 3, 4, 5]",
+        "layer": "lift"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957325,
+          48.422964
+        ]
+      },
+      "id": "g1NjU"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 1\ntoilet_type: male\nbuilding: o27\n",
+        "layer": "layer_1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957029,
+          48.422951
+        ]
+      },
+      "id": "Y0NDM"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 1\ntoilet_type: handicap\nbuilding: o27",
+        "layer": "layer_1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957162,
+          48.422794
+        ]
+      },
+      "id": "QzNjE"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 1\ntoilet_type: female\nbuilding: o27",
+        "layer": "layer_1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957179,
+          48.422783
+        ]
+      },
+      "id": "A2MTA"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 1\ntoilet_type: female\nbuilding: o26",
+        "layer": "layer_1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.956392,
+          48.42254
+        ]
+      },
+      "id": "cxNTM"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "stairs",
+        "description": "type: stairs\nbuilding: o26\nconnects_levels: [1, 2]",
+        "layer": "stairs"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.956448,
+          48.422549
+        ]
+      },
+      "id": "MwOTA"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "lift",
+        "layer": "lift",
+        "description": "type: lift\nbuilding: o26\nconnects_levels: [1, 2, 3, 4, 5]"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.956493,
+          48.422605
+        ]
+      },
+      "id": "YzNDY"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "layer": "layer_3",
+        "description": "type: toilet\nlevel: 3\ntoilet_type: male\nbuilding: o29"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957544,
+          48.423355
+        ]
+      },
+      "id": "g0MzY"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 2\ntoilet_type: handicap\nbuilding: o29",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957545,
+          48.423342
+        ]
+      },
+      "id": "k1ODA"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 1\ntoilet_type: female\nbuilding: o29",
+        "layer": "layer_1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957547,
+          48.423343
+        ]
+      },
+      "id": "MzNjc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 3\ntoilet_type: female\nbuilding: o29",
+        "layer": "layer_3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957551,
+          48.423339
+        ]
+      },
+      "id": "I2MTE"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 2\ntoilet_type: male\nbuilding: o27",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957029,
+          48.42295
+        ]
+      },
+      "id": "IzMDg"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 2\ntoilet_type: female\nbuilding: o27",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.95704,
+          48.422941
+        ]
+      },
+      "id": "k4Njg"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 3\ntoilet_type: male\nbuilding: o27",
+        "layer": "layer_3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957201,
+          48.422991
+        ]
+      },
+      "id": "MxNjQ"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 3\ntoilet_type: female\nbuilding: o27",
+        "layer": "layer_3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.95724,
+          48.422844
+        ]
+      },
+      "id": "M1ODg"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 4\ntoilet_type: male\nbuilding: o27",
+        "layer": "layer_4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957203,
+          48.422989
+        ]
+      },
+      "id": "I3Nzk"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 4\ntoilet_type: female\nbuilding: o27",
+        "layer": "layer_4"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.95724,
+          48.422844
+        ]
+      },
+      "id": "Y1MTU"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 5\ntoilet_type: male\nbuilding: o27",
+        "layer": "layer_5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957201,
+          48.422991
+        ]
+      },
+      "id": "kyOTM"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 5\ntoilet_type: female\nbuilding: o27",
+        "layer": "layer_5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957242,
+          48.422843
+        ]
+      },
+      "id": "gzMzY"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "door",
+        "description": "type: door\nlevel: 2\nconnects: [o29, outside]",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957527,
+          48.423267
+        ]
+      },
+      "id": "A1NDQ"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "door",
+        "description": "type: door\nlevel: 2\nconnects: [o28, outside]",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957663,
+          48.423077
+        ]
+      },
+      "id": "A0MTY"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "door",
+        "description": "type: door\nlevel: 1\nconnects: [o28, outside]",
+        "layer": "layer_1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957729,
+          48.422999
+        ]
+      },
+      "id": "I3MjA"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "door",
+        "description": "type: door\nlevel: 2\nconnects: [o28, outside]",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.958054,
+          48.42316
+        ]
+      },
+      "id": "kyNTc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "door",
+        "description": "type: door\nlevel: 1\nconnects: [o28, o27]",
+        "layer": "layer_1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957643,
+          48.423046
+        ]
+      },
+      "id": "g2Mzc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "door",
+        "description": "type: door\nlevel: 2\nconnects: [o28, o27]",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957645,
+          48.423047
+        ]
+      },
+      "id": "E2MTk"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "door",
+        "description": "type: door\nlevel: 1\nconnects: [o27, outside]",
+        "layer": "layer_1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957454,
+          48.422637
+        ]
+      },
+      "id": "gwMTE"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "door",
+        "description": "type: door\nlevel: 2\nconnects: [o27, outside]",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.95701,
+          48.423186
+        ]
+      },
+      "id": "IzMDU"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 1\ntoilet_type: male\nbuilding: o26",
+        "layer": "layer_1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.95649,
+          48.422643
+        ]
+      },
+      "id": "I1NjU"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "stairs",
+        "description": "type: stairs\nbuilding: o26\nconnects_levels: [2, 3, 4, 5]",
+        "layer": "stairs"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.956426,
+          48.422602
+        ]
+      },
+      "id": "k0NTQ"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 2\ntoilet_type: female\nbuilding: o26",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.956459,
+          48.422644
+        ]
+      },
+      "id": "QwMTM"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 2\ntoilet_type: male\nbuilding: o26",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.956471,
+          48.422635
+        ]
+      },
+      "id": "UwMTk"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 3\ntoilet_type: female\nbuilding: o26",
+        "layer": "layer_3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.956471,
+          48.422638
+        ]
+      },
+      "id": "AwNzg"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 3\ntoilet_type: male\nbuilding: o26",
+        "layer": "layer_3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.956501,
+          48.422642
+        ]
+      },
+      "id": "Y4ODI"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 5\ntoilet_type: male\nbuilding: o26",
+        "layer": "layer_5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.956503,
+          48.422639
+        ]
+      },
+      "id": "c3Nzc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 5\ntoilet_type: female\nbuilding: o26",
+        "layer": "layer_5"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.956471,
+          48.422633
+        ]
+      },
+      "id": "QwMTc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "food_drink",
+        "description": "type: food_drink\nbuilding: o27",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.95736,
+          48.422972
+        ]
+      },
+      "id": "Q1MTY"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "lift",
+        "description": "type: lift\nbuilding: o25\nconnects_levels: [1, 2, 3, 4, 5, 6]",
+        "layer": "lift"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955672,
+          48.422277
+        ]
+      },
+      "id": "c0Nzk"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 1\ntoilet_type: female\nbuilding: o25",
+        "layer": "layer_1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955547,
+          48.422256
+        ]
+      },
+      "id": "c1NjM"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 1\ntoilet_type: male\nbuilding: ö26",
+        "layer": "layer_1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955476,
+          48.422234
+        ]
+      },
+      "id": "UyNjA"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "stairs",
+        "description": "type: stairs\nbuilding: o25\nconnecting_levels: [1, 2]",
+        "layer": "stairs"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955645,
+          48.422265
+        ]
+      },
+      "id": "M3Njc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 2\ntoilet_type: male\nbuilding: o25",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955672,
+          48.422339
+        ]
+      },
+      "id": "M2NTA"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 2\ntoilet_type: female\nbuilding: o25",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955696,
+          48.422312
+        ]
+      },
+      "id": "g0OTM"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "description": "type: public_transport\nbus_lines: [5, 8, 13, E, N3]\ntram_lines: [2]",
+        "name": "public_transport",
+        "layer": "layer_public_transport"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              9.956899,
+              48.422292
+            ],
+            [
+              9.956365,
+              48.421983
+            ],
+            [
+              9.956195,
+              48.421858
+            ],
+            [
+              9.956258,
+              48.421767
+            ],
+            [
+              9.956371,
+              48.421696
+            ],
+            [
+              9.957063,
+              48.422208
+            ],
+            [
+              9.956899,
+              48.422292
+            ]
+          ]
+        ]
+      },
+      "id": "Y4NjA"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "description": "type: public_transport\nbus_lines: [5, 13, E, N3]\ntram_lines: [2]",
+        "name": "public_transport",
+        "layer": "layer_public_transport"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              9.956491,
+              48.425174
+            ],
+            [
+              9.956648,
+              48.425245
+            ],
+            [
+              9.957028,
+              48.424888
+            ],
+            [
+              9.956888,
+              48.424832
+            ],
+            [
+              9.956679,
+              48.424985
+            ],
+            [
+              9.956491,
+              48.425174
+            ]
+          ]
+        ]
+      },
+      "id": "QyMjQ"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "stairs",
+        "layer": "stairs",
+        "description": "type: stairs\nbuilding: o25\nconnects_levels: [2, 3, 4, 5, 6]"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955629,
+          48.42231
+        ]
+      },
+      "id": "c1MzM"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "layer": "layer_2",
+        "description": "type: food_drink\nbuilding: o25",
+        "name": "food_drink"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955884,
+          48.422395
+        ]
+      },
+      "id": "M5OTg"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "food_drink",
+        "description": "type: food_drink\nbuilding: o25",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955599,
+          48.422217
+        ]
+      },
+      "id": "I3MTA"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 3\ntoilet_type: female\nbuilding: o25",
+        "layer": "laye_3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955642,
+          48.422266
+        ]
+      },
+      "id": "EyNjk"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "description": "type: toilet\nlevel: 3\ntoilet_type: male\nbuilding: o25\n"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955657,
+          48.422252
+        ]
+      },
+      "id": "UxNjU"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "layer": "layer_4",
+        "description": "type: toilet\nlevel: 4\ntoilet_type: female\nbuilding: o25"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955644,
+          48.422266
+        ]
+      },
+      "id": "I4MjE"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "layer": "layer_4",
+        "description": "type: toilet\nlevel: 4\ntoilet_type: male\nbuilding: o25"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955656,
+          48.422252
+        ]
+      },
+      "id": "Q3MTg"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "layer": "layer_5",
+        "description": "type: toilet\nlevel: 5\ntoilet_type: male\nbuilding: o25"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955657,
+          48.422253
+        ]
+      },
+      "id": "I0NzE"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "layer": "layer_5",
+        "description": "type: toilet\nlevel: 5\ntoilet_type: female\nbuilding: o25"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955642,
+          48.422266
+        ]
+      },
+      "id": "M4NzY"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "layer": "layer_6",
+        "description": "type: toilet\nlevel: 6\ntoilet_type: male\nbuilding: o25"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955657,
+          48.422253
+        ]
+      },
+      "id": "M5Njk"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "toilet",
+        "layer": "layer_6",
+        "description": "type: toilet\nlevel: 6\ntoilet_type: female\nbuilding: o25"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955642,
+          48.422266
+        ]
+      },
+      "id": "U2Mjc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "door",
+        "description": "type: door\nlevel: 1\nconnects: [o26, o27]",
+        "layer": "layer_1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.956836,
+          48.422768
+        ]
+      },
+      "id": "Q3ODk"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "door",
+        "description": "type: door\nlevel: 1\nconnects: [o26, o25]",
+        "layer": "layer_1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.956043,
+          48.422448
+        ]
+      },
+      "id": "U0OTA"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "door",
+        "layer": "layer_2",
+        "description": "type: door\nlevel: 2\nconnects: [o26, o27]"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.956847,
+          48.422754
+        ]
+      },
+      "id": "UwOTg"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "door",
+        "description": "type: door\nlevel: 2\nconnects: [o26, o25]",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.956003,
+          48.422497
+        ]
+      },
+      "id": "U3NzE"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "door",
+        "description": "type: door\nlevel: 3\nconnects: [o26, o25]",
+        "layer": "layer_3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.956051,
+          48.42244
+        ]
+      },
+      "id": "EyMjg"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "door",
+        "layer": "layer_4",
+        "description": "type: door\nlevel: 4\nconnects: [o26, o25]"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.956026,
+          48.422464
+        ]
+      },
+      "id": "IxMTA"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "door",
+        "layer": "layer_5",
+        "description": "type: door\nlevel: 5\nconnects: [o26, o27]"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.95679,
+          48.422821
+        ]
+      },
+      "id": "gzMDQ"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "door",
+        "layer": "layer_5",
+        "description": "type: door\nlevel: 5\nconnects: [o26, o25]"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.956034,
+          48.422457
+        ]
+      },
+      "id": "I4OTg"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "lecture_hall",
+        "description": "type: lecture_hall\nlevel: 2\nbuilding: o28\ndescription: Big Lecture Hall, often used for Info lectures"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957997,
+          48.423037
+        ]
+      },
+      "id": "EzMzc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "seminar_room",
+        "description": "type: seminar_room\nlevel: 1\nbuilding: o29\nnumber: 1001",
+        "layer": "layer_1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.9576,
+          48.423238
+        ]
+      },
+      "id": "UwMDc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "seminar_room",
+        "layer": "layer_1",
+        "description": "type: seminar_room\nlevel: 1\nbuilding: o29\nnumber: 1002"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957674,
+          48.423266
+        ]
+      },
+      "id": "cxODg"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "seminar_room",
+        "layer": "layer_1",
+        "description": "type: seminar_room\nlevel: 1\nbuilding: o29\nnumber: 1003"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957759,
+          48.423297
+        ]
+      },
+      "id": "IxMTM"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "seminar_room",
+        "layer": "layer_1",
+        "description": "type: seminar_room\nlevel: 1\nbuilding: o29\nnumber: 1004"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957835,
+          48.423322
+        ]
+      },
+      "id": "cwODM"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "seminar_room",
+        "description": "type: seminar_room\nlevel: 2\nbuilding: o29\nnumber: 2001",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957598,
+          48.423239
+        ]
+      },
+      "id": "k4MDk"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "seminar_room",
+        "description": "type: seminar_room\nlevel: 2\nbuilding: o29\nnumber: 2002",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957675,
+          48.423267
+        ]
+      },
+      "id": "UyMDc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "seminar_room",
+        "description": "type: seminar_room\nlevel: 2\nbuilding: o29\nnumber: 2003",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957757,
+          48.423296
+        ]
+      },
+      "id": "U3MDE"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "seminar_room",
+        "layer": "layer_2",
+        "description": "type: seminar_room\nlevel: 2\nbuilding: o29\nnumber: 2004"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957834,
+          48.423323
+        ]
+      },
+      "id": "czNjM"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "seminar_room",
+        "layer": "layer_2",
+        "description": "type: seminar_room\nlevel: 2\nbuilding: o29\nnumber: 2005"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957764,
+          48.423412
+        ]
+      },
+      "id": "IyNTc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "seminar_room",
+        "layer": "layer_2",
+        "description": "type: seminar_room\nlevel: 2\nbuilding: o29\nnumber: 2006"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957678,
+          48.423377
+        ]
+      },
+      "id": "EwODc"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "seminar_room",
+        "description": "type: seminar_room\nlevel: 3\nbuilding: o29\nnumber: 3001",
+        "layer": "layer_3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957599,
+          48.423238
+        ]
+      },
+      "id": "g2NjA"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "seminar_room",
+        "layer": "layer_3",
+        "description": "type: seminar_room\nlevel: 3\nbuilding: o29\nnumber: 3002"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957677,
+          48.423266
+        ]
+      },
+      "id": "U3MTQ"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "seminar_room",
+        "layer": "layer_3",
+        "description": "type: seminar_room\nlevel: 3\nbuilding: o29\nnumber: 3003"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957757,
+          48.423297
+        ]
+      },
+      "id": "UwMzg"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "description": "type: seminar_room\nlevel: 3\nbuilding: o29\nnumber: 3004",
+        "name": "seminar_room",
+        "layer": "layer_3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957832,
+          48.423322
+        ]
+      },
+      "id": "kzMzA"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "lecture_hall",
+        "description": "type: lecture_hall\nlevel: 2\nbuilding: o27\ndescription: H20",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957559,
+          48.422785
+        ]
+      },
+      "id": "A1NzM"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "lecture_hall",
+        "description": "type: lecture_hall\nlevel: 2\nbuilding: o25\ndescription: H1",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955834,
+          48.422465
+        ]
+      },
+      "id": "A3NzQ"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "lecture_hall",
+        "layer": "layer_2",
+        "description": "type: lecture_hall\nlevel: 2\nbuilding: o25\ndescription: H2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955669,
+          48.422647
+        ]
+      },
+      "id": "IyMTg"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "lecture_hall",
+        "description": "type: lecture_hall\nlevel: 2\nbuilding: o25\ndescription: H4",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955217,
+          48.422437
+        ]
+      },
+      "id": "EzNTY"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "pc_pool",
+        "description": "type: pc_pool\nlevel: 1\nbuilding: o28\nnumber: 1001",
+        "layer": "layer_1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957823,
+          48.423141
+        ]
+      },
+      "id": "YzNzE"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "pc_pool",
+        "layer": "layer_3",
+        "description": "type: pc_pool\nlevel: 3\nbuilding: o29\nnumber: 3005"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957764,
+          48.423412
+        ]
+      },
+      "id": "UyMzQ"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "pc_pool",
+        "description": "type: pc_pool\nlevel: 3\nbuilding: o29\nnumber: 3006",
+        "layer": "layer_3"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.95768,
+          48.423376
+        ]
+      },
+      "id": "M4MDA"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "pc_pool",
+        "description": "type: pc_pool\nlevel: 1\nbuilding: o27\nnumber: 133",
+        "layer": "layer_1"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.957253,
+          48.42271
+        ]
+      },
+      "id": "U1MzI"
+    }
+  ]
+}
