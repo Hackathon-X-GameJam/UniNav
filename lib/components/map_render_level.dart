@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
@@ -7,7 +9,7 @@ import 'package:uninav/data/geo/model.dart';
 import 'package:uninav/map.dart';
 import 'package:uninav/util/geomath.dart';
 
-List<Widget> renderLevel(int level) {
+List<Widget> renderLevel(int level, {LayerHitNotifier? hitNotifier}) {
   return <Widget>[
     LevelLayer(
         filter: (feature) =>
@@ -18,55 +20,58 @@ List<Widget> renderLevel(int level) {
                 points: pts,
                 color: Colors.orange.withOpacity(0.2),
                 borderColor: Colors.orange,
-                isFilled: true,
-                borderStrokeWidth: 1,
+                borderStrokeWidth: 2,
+                hitValue: feature,
               ),
             )
             .unwrap(),
         markerConstructor: (feature) => Marker(
-              width: 150,
-              height: 60,
+              width: 50,
+              height: 20,
               point: feature.getPoint().unwrap(),
-              builder: (cx) => Center(
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.class_,
-                      color: Colors.black,
-                    ),
-                    Text('${feature.name}'),
-                  ],
-                ),
+              child: Column(
+                children: [
+                  Icon(
+                    Icons.class_,
+                    color: Colors.black,
+                  ),
+                  Text('${feature.name}'),
+                ],
               ),
-            )),
+              alignment: Alignment.center,
+            ),
+        notifier: hitNotifier),
     LevelLayer(
       filter: (feature) => feature.level == level && feature.type is Room,
       polyConstructor: (feature) => feature
           .getPolygon(
             constructor: (pts) => Polygon(
               points: pts,
-              color: Colors.green.withOpacity(0.2),
+              color: Colors.green.withOpacity(1.2),
               borderColor: Colors.green,
-              isFilled: true,
-              borderStrokeWidth: 1,
+              borderStrokeWidth: 2,
+              hitValue: feature,
             ),
           )
           .unwrap(),
+      notifier: hitNotifier,
     ),
     LevelLayer(
       filter: (feature) => feature.level == level && feature.type is Door,
       markerConstructor: (feature) {
         final point = feature.getPoint().unwrap();
         return Marker(
-          width: 20,
-          height: 20,
+          width: 21,
+          height: 21,
           point: point,
-          builder: (ctx) => const Icon(
+          child: const Icon(
             Icons.door_front_door,
             color: Colors.brown,
           ),
+          alignment: Alignment.center,
         );
       },
+      notifier: hitNotifier,
     ),
     LevelLayer(
       filter: (feature) => feature.level == level && feature.type is Toilet,
@@ -93,16 +98,17 @@ List<Widget> renderLevel(int level) {
 
         final point = feature.getPoint().unwrap();
         return Marker(
-          width: 20,
-          height: 20,
+          width: 21,
+          height: 21,
           point: point,
-          builder: (ctx) => Icon(
+          child: Icon(
             icon,
             color: Colors.purple,
           ),
-          rotateAlignment: Alignment.center,
+          alignment: Alignment.center,
         );
       },
+      notifier: hitNotifier,
     ),
     LevelLayer(
       filter: (feature) =>
@@ -111,15 +117,17 @@ List<Widget> renderLevel(int level) {
       markerConstructor: (feature) {
         final point = feature.getPoint().unwrap();
         return Marker(
-          width: 20,
-          height: 20,
+          width: 21,
+          height: 21,
           point: point,
-          builder: (ctx) => Icon(
+          child: Icon(
             Icons.stairs_outlined,
             color: Colors.deepPurple.shade300,
           ),
+          alignment: Alignment.center,
         );
       },
+      notifier: hitNotifier,
     ),
     LevelLayer(
       filter: (feature) =>
@@ -128,15 +136,17 @@ List<Widget> renderLevel(int level) {
       markerConstructor: (feature) {
         final point = feature.getPoint().unwrap();
         return Marker(
-          width: 20,
-          height: 20,
+          width: 21,
+          height: 21,
           point: point,
-          builder: (ctx) => const Icon(
+          child: const Icon(
             Icons.elevator_outlined,
             color: Colors.deepPurple,
           ),
+          alignment: Alignment.center,
         );
       },
+      notifier: hitNotifier,
     ),
   ];
 }
@@ -147,6 +157,7 @@ class LevelLayer extends StatelessWidget {
   final Marker Function(LatLng, String)? polyCenterMarkerConstructor;
   final Marker Function(Feature)? markerConstructor;
   final int? level;
+  final LayerHitNotifier? notifier;
 
   const LevelLayer({
     this.level,
@@ -154,6 +165,7 @@ class LevelLayer extends StatelessWidget {
     this.polyConstructor,
     this.polyCenterMarkerConstructor,
     this.markerConstructor,
+    this.notifier,
     super.key,
   });
 
@@ -172,7 +184,15 @@ class LevelLayer extends StatelessWidget {
             if (polyConstructor != null) {
               filteredPolygons.add(polyConstructor!(feature));
             } else {
-              filteredPolygons.add(feature.getPolygon().unwrap());
+              filteredPolygons.add(feature
+                  .getPolygon(
+                      constructor: (points) => Polygon(
+                            points: points,
+                            borderColor: Colors.black26,
+                            borderStrokeWidth: 2.0,
+                            hitValue: feature,
+                          ))
+                  .unwrap());
             }
 
             // calculate polygon center
@@ -186,7 +206,7 @@ class LevelLayer extends StatelessWidget {
                 width: 100,
                 height: 100,
                 point: center,
-                builder: (cx) => Center(
+                child: Center(
                   child: Text(
                     feature.name,
                     style: const TextStyle(
@@ -195,6 +215,7 @@ class LevelLayer extends StatelessWidget {
                     ),
                   ),
                 ),
+                alignment: Alignment.center,
               ));
             }
           } else if (feature.isPoint()) {
@@ -206,7 +227,7 @@ class LevelLayer extends StatelessWidget {
                 width: 100,
                 height: 100,
                 point: point,
-                builder: (cx) => Center(
+                child: Center(
                   child: Text(
                     feature.name,
                     style: const TextStyle(
@@ -215,6 +236,7 @@ class LevelLayer extends StatelessWidget {
                     ),
                   ),
                 ),
+                alignment: Alignment.center,
               ));
             }
           }
@@ -226,28 +248,39 @@ class LevelLayer extends StatelessWidget {
       // print(filteredPolygons[0].points[0]);
       // print(myMapController.features.length);
 
+      // filteredPolygons.forEach((element) {
+      //   print(element.hitValue);
+      // });
+
       final List<Widget> widgets = [];
       if (filteredPolygons.isNotEmpty) {
         if (polyConstructor != null) {
-          widgets.add(PolygonLayer(polygons: filteredPolygons));
+          widgets.add(TranslucentPointer(
+            child: PolygonLayer(
+              polygons: filteredPolygons,
+              hitNotifier: notifier,
+            ),
+          ));
         } else {
-          widgets.add(PolygonLayer(
-              polygons: filteredPolygons
-                  .map((poly) => Polygon(
-                        points: poly.points,
-                        borderColor: Colors.black26,
-                        borderStrokeWidth: 2.0,
-                      ))
-                  .toList()));
+          widgets.add(TranslucentPointer(
+            child: PolygonLayer(
+              polygons: filteredPolygons,
+              hitNotifier: notifier,
+            ),
+          ));
         }
-        widgets.add(MarkerLayer(
-          markers: polygonCenterMarkers,
-          rotate: true,
+        widgets.add(TranslucentPointer(
+          child: MarkerLayer(
+            markers: polygonCenterMarkers,
+            rotate: true,
+          ),
         ));
       }
 
       if (filteredMarkers.isNotEmpty) {
-        widgets.add(MarkerLayer(markers: filteredMarkers, rotate: true));
+        widgets.add(TranslucentPointer(
+          child: MarkerLayer(markers: filteredMarkers, rotate: true),
+        ));
       }
 
       return Stack(children: widgets);

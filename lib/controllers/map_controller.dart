@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:anyhow/anyhow.dart';
-import 'package:geojson/geojson.dart';
+import 'package:geojson_vi/geojson_vi.dart';
 import 'package:get/get.dart';
 import 'package:uninav/data/geo/model.dart';
 import 'package:uninav/data/geo/parser.dart';
@@ -46,14 +46,17 @@ class MyMapController extends GetxController {
 
       final featuresList = <Feature>[];
 
-      final geojson = GeoJson();
-
-      await geojson.parse(geoJsonString);
+      print('doing');
+      final geojson = GeoJSONFeatureCollection.fromJSON(geoJsonString);
+      print('done');
 
       for (final feature in geojson.features) {
+        print(feature);
+        print(feature?.properties);
+        if (feature == null) continue;
         print(feature.properties);
-        final parsed =
-            parseFeature(feature.properties ?? <String, dynamic>{}, feature);
+        final parsed = parseFeature(
+            feature.properties ?? <String, dynamic>{}, feature.geometry);
         if (parsed case Ok(:final ok)) {
           featuresList.add(ok);
         }

@@ -1,10 +1,10 @@
 import 'package:anyhow/anyhow.dart';
-import 'package:geojson/geojson.dart';
+import 'package:geojson_vi/geojson_vi.dart';
 import 'package:uninav/data/geo/model.dart';
 import 'package:yaml/yaml.dart';
 
 Result<Feature> parseFeature(
-    Map<String, dynamic> properties, dynamic geometry) {
+    Map<String, dynamic> properties, GeoJSONGeometry geometry) {
   final name = properties['name'] as String?;
   final description_yaml = properties['description'] as String? ?? '';
   final layer = properties['layer'] as String?;
