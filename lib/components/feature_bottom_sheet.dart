@@ -19,8 +19,8 @@ Future<void> showFeatureBottomSheet(
       data: ThemeData.light(),
       child: Container(
         constraints: const BoxConstraints(
-          minHeight: 300,
-        ),
+            // minHeight: 300,
+            ),
         width: Get.mediaQuery.size.width,
         decoration: const BoxDecoration(
           color: Colors.black,
@@ -72,6 +72,28 @@ Future<void> showFeatureBottomSheet(
             const SizedBox(height: 10),
           ],
           ..._buildFeatureContent(feature),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              ElevatedButton(
+                child: const Row(
+                  children: [
+                    Icon(
+                      Icons.share_location,
+                      color: Colors.black,
+                    ),
+                    SizedBox(width: 4),
+                    Text(
+                      "Start Navigation",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ],
+                ),
+                onPressed: () => {},
+              ),
+            ],
+          )
         ]),
       ),
     ),
@@ -114,7 +136,35 @@ List<Widget> _buildRoomContent(Feature feature) {
 
 /// Builds the content for the Door feature type.
 List<Widget> _buildDoorContent(Feature feature, List<String> connects) {
-  return [Text('Door: ${feature.name}\nConnects: $connects')];
+  return [
+    Text(
+      feature.name,
+      style: const TextStyle(fontSize: 18),
+    ),
+    const SizedBox(height: 10),
+    if (connects.isNotEmpty) ...[
+      const Align(
+        alignment: Alignment.centerLeft,
+        child: Padding(
+          padding: EdgeInsets.only(right: 4),
+          child: Text(
+            'Connects:',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+      Align(
+        alignment: Alignment.centerLeft,
+        child: Wrap(
+          spacing: 8,
+          runSpacing: 4,
+          children: connects.map((place) {
+            return ColorfulChip(label: place.toString());
+          }).toList(),
+        ),
+      ),
+    ],
+  ];
 }
 
 /// Builds the content for the Toilet feature type.

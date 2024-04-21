@@ -40,7 +40,7 @@ Result<Feature> parseFeature(
 
   final building = yaml['building'] as String?;
 
-  print("yaml: $yaml");
+  // print("yaml: $yaml");
 
   var raw_type = yaml['type'] as String?;
   if (raw_type == null && layer?.toLowerCase() == 'buildings') {
@@ -123,7 +123,7 @@ Result<List<String>> stringifyList(List<dynamic> tramLines) {
 
 Result<List<T>> getYamlList<T>(YamlMap yaml, String key) {
   try {
-    print('yaml is ${yaml[key]}');
+    // print('yaml is ${yaml[key]}');
     final val = (yaml[key] as YamlList?);
     if (val == null) {
       return bail("Key $key is missing in yaml");

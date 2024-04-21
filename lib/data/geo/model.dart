@@ -36,7 +36,6 @@ class Feature with _$Feature {
             points: pts,
             borderColor: Colors.black26,
             borderStrokeWidth: 2.0,
-            hitValue: 'test${pts.length}',
           );
       final polygon = geometry as GeoJSONPolygon;
       // print(polygon.geometry!.geoSeries[0].geoPoints);

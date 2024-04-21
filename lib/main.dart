@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:uninav/controllers/isar_controller.dart';
 import 'package:uninav/controllers/map_controller.dart';
@@ -8,6 +9,9 @@ import 'package:uninav/settings.dart';
 // TODO: maybe make not async?
 void main() async {
   Get.put(MyMapController());
+  await Get.find<MyMapController>()
+      .loadGeoJson(await rootBundle.loadString('assets/geo/uulm_beta.geojson'));
+
   await Get.putAsync(() async {
     final controller = IsarController();
     await controller.initializeIsar();

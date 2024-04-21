@@ -86,15 +86,15 @@ class MyMapController extends GetxController {
 
       final featuresList = <Feature>[];
 
-      print('doing');
+      // print('doing');
       final geojson = GeoJSONFeatureCollection.fromJSON(geoJsonString);
-      print('done');
+      // print('done');
 
       for (final feature in geojson.features) {
-        print(feature);
-        print(feature?.properties);
+        // print(feature);
+        // print(feature?.properties);
         if (feature == null) continue;
-        print(feature.properties);
+        // print(feature.properties);
         final parsed = parseFeature(
             feature.properties ?? <String, dynamic>{}, feature.geometry);
         if (parsed case Ok(:final ok)) {

@@ -10,38 +10,39 @@ import 'package:uninav/map.dart';
 import 'package:uninav/util/geomath.dart';
 import 'package:uninav/util/util.dart';
 
-List<Widget> renderLevel(int level, {LayerHitNotifier? hitNotifier}) {
+List<Widget> renderLevel(
+  int level,
+) {
   return <Widget>[
     LevelLayer(
-        filter: (feature) =>
-            feature.level == level && feature.type is LectureHall,
-        polyConstructor: (feature) => feature
-            .getPolygon(
-              constructor: (pts) => Polygon(
-                points: pts,
-                color: Colors.orange.withOpacity(0.2),
-                borderColor: Colors.orange,
-                borderStrokeWidth: 2,
-                hitValue: feature,
-              ),
-            )
-            .unwrap(),
-        markerConstructor: (feature) => Marker(
-              width: 50,
-              height: 20,
-              point: feature.getPoint().unwrap(),
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.class_,
-                    color: Colors.black,
-                  ),
-                  Text('${feature.name}'),
-                ],
-              ),
-              alignment: Alignment.center,
+      filter: (feature) =>
+          feature.level == level && feature.type is LectureHall,
+      polyConstructor: (feature) => feature
+          .getPolygon(
+            constructor: (pts) => Polygon(
+              points: pts,
+              color: Colors.orange.withOpacity(0.2),
+              borderColor: Colors.orange,
+              borderStrokeWidth: 2,
             ),
-        notifier: hitNotifier),
+          )
+          .unwrap(),
+      markerConstructor: (feature) => Marker(
+        width: 50,
+        height: 20,
+        point: feature.getPoint().unwrap(),
+        child: Column(
+          children: [
+            Icon(
+              Icons.class_,
+              color: Colors.black,
+            ),
+            Text('${feature.name}'),
+          ],
+        ),
+        alignment: Alignment.center,
+      ),
+    ),
     LevelLayer(
       filter: (feature) => feature.level == level && feature.type is Room,
       polyConstructor: (feature) => feature
@@ -51,11 +52,9 @@ List<Widget> renderLevel(int level, {LayerHitNotifier? hitNotifier}) {
               color: Colors.green.withOpacity(1.2),
               borderColor: Colors.green,
               borderStrokeWidth: 2,
-              hitValue: feature,
             ),
           )
           .unwrap(),
-      notifier: hitNotifier,
     ),
     LevelLayer(
       filter: (feature) => feature.level == level && feature.type is Door,
@@ -72,7 +71,6 @@ List<Widget> renderLevel(int level, {LayerHitNotifier? hitNotifier}) {
           alignment: Alignment.center,
         );
       },
-      notifier: hitNotifier,
     ),
     LevelLayer(
       filter: (feature) => feature.level == level && feature.type is Toilet,
@@ -91,7 +89,6 @@ List<Widget> renderLevel(int level, {LayerHitNotifier? hitNotifier}) {
           alignment: Alignment.center,
         );
       },
-      notifier: hitNotifier,
     ),
     LevelLayer(
       filter: (feature) =>
@@ -110,7 +107,6 @@ List<Widget> renderLevel(int level, {LayerHitNotifier? hitNotifier}) {
           alignment: Alignment.center,
         );
       },
-      notifier: hitNotifier,
     ),
     LevelLayer(
       filter: (feature) =>
@@ -129,7 +125,6 @@ List<Widget> renderLevel(int level, {LayerHitNotifier? hitNotifier}) {
           alignment: Alignment.center,
         );
       },
-      notifier: hitNotifier,
     ),
   ];
 }
@@ -140,7 +135,6 @@ class LevelLayer extends StatelessWidget {
   final Marker Function(LatLng, String)? polyCenterMarkerConstructor;
   final Marker Function(Feature)? markerConstructor;
   final int? level;
-  final LayerHitNotifier? notifier;
 
   const LevelLayer({
     this.level,
@@ -148,7 +142,6 @@ class LevelLayer extends StatelessWidget {
     this.polyConstructor,
     this.polyCenterMarkerConstructor,
     this.markerConstructor,
-    this.notifier,
     super.key,
   });
 
@@ -173,7 +166,6 @@ class LevelLayer extends StatelessWidget {
                             points: points,
                             borderColor: Colors.black26,
                             borderStrokeWidth: 2.0,
-                            hitValue: feature,
                           ))
                   .unwrap());
             }
@@ -241,14 +233,12 @@ class LevelLayer extends StatelessWidget {
           widgets.add(TranslucentPointer(
             child: PolygonLayer(
               polygons: filteredPolygons,
-              hitNotifier: notifier,
             ),
           ));
         } else {
           widgets.add(TranslucentPointer(
             child: PolygonLayer(
               polygons: filteredPolygons,
-              hitNotifier: notifier,
             ),
           ));
         }

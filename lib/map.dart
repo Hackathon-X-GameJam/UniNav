@@ -19,7 +19,6 @@ class MapPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LayerHitNotifier hitNotifier = ValueNotifier(null);
     return Scaffold(
         drawer: MyDrawer(),
         appBar: AppBar(
@@ -43,8 +42,6 @@ class MapPage extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
             // Add onPressed logic here
-            await Get.find<MyMapController>().loadGeoJson(
-                await rootBundle.loadString('assets/geo/uulm_beta.geojson'));
           },
           child: const Icon(Icons.add),
         ),
@@ -70,7 +67,6 @@ class MapPage extends StatelessWidget {
                 TranslucentPointer(
                   child: LevelLayer(
                     filter: (feature) => feature.type is Building,
-                    notifier: hitNotifier,
                   ),
                 ),
 
@@ -97,10 +93,8 @@ class MapPage extends StatelessWidget {
                                   color: Colors.green.withOpacity(0.2),
                                   borderColor: Colors.green,
                                   borderStrokeWidth: 1,
-                                  hitValue: feature,
                                 ))
                         .unwrap(),
-                    notifier: hitNotifier,
                   ),
                 ),
 
@@ -108,8 +102,8 @@ class MapPage extends StatelessWidget {
                 Obx(
                   () => Stack(
                       children: renderLevel(
-                          Get.find<MyMapController>().currentLevel.value,
-                          hitNotifier: hitNotifier)),
+                    Get.find<MyMapController>().currentLevel.value,
+                  )),
                 ),
               ],
             ),
