@@ -265,7 +265,8 @@ Graph makeGraph(GraphFeature origin, List<Feature> allFeatures,
 
   final adjacent = findAdjacent(origin, allFeatures);
   for (final feature in adjacent.asSet()..removeAll(graph.nodes)) {
-    graph.addEdge(origin, feature, origin.metersTo(feature));
+    graph.addEdge(origin, feature,
+        origin.metersTo(feature)); // (feature is Portal ? 10.0 : 0.0));
     final _ = makeGraph(feature, allFeatures, graph);
     // graph.addAll(deeper);
   }

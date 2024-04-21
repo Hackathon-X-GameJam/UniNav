@@ -151,8 +151,8 @@ class _MapPageState extends State<MapPage> {
                 left: 16,
                 top: 16,
                 child: Container(
-                  height: 450,
-                  width: 150,
+                  height: 300,
+                  width: 200,
                   child: GetBuilder<NavigationController>(
                     builder: (controller) {
                       if (controller.nav.isNotEmpty) {
