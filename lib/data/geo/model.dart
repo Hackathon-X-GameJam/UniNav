@@ -20,6 +20,7 @@ class Feature with _$Feature {
     required GeoJSONGeometry geometry,
     int? level,
     String? building,
+    required String id,
   }) = _Feature;
 
   bool isPolygon() {

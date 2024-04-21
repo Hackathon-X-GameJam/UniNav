@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uninav/data/geo/model.dart';
+
+bool eq(String? a, String? b) => a?.toLowerCase() == b?.toLowerCase();
 
 String formatDuration(Duration duration) {
   final days = duration.inDays;

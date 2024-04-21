@@ -144,24 +144,6 @@ class _$BuildingFloorImpl extends BuildingFloor {
   @override
   final Feature building;
 
-  @override
-  String toString() {
-    return 'GraphFeature.buildingFloor(floor: $floor, building: $building)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$BuildingFloorImpl &&
-            (identical(other.floor, floor) || other.floor == floor) &&
-            (identical(other.building, building) ||
-                other.building == building));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, floor, building);
-
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
@@ -341,29 +323,6 @@ class _$PortalImpl extends Portal {
   @override
   final Feature baseFeature;
 
-  @override
-  String toString() {
-    return 'GraphFeature.portal(fromFloor: $fromFloor, from: $from, toFloor: $toFloor, to: $to, baseFeature: $baseFeature)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PortalImpl &&
-            (identical(other.fromFloor, fromFloor) ||
-                other.fromFloor == fromFloor) &&
-            (identical(other.from, from) || other.from == from) &&
-            (identical(other.toFloor, toFloor) || other.toFloor == toFloor) &&
-            (identical(other.to, to) || other.to == to) &&
-            (identical(other.baseFeature, baseFeature) ||
-                other.baseFeature == baseFeature));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, fromFloor, from, toFloor, to, baseFeature);
-
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
@@ -528,25 +487,6 @@ class _$BasicFeatureImpl extends BasicFeature {
   final String building;
   @override
   final Feature feature;
-
-  @override
-  String toString() {
-    return 'GraphFeature.basicFeature(floor: $floor, building: $building, feature: $feature)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$BasicFeatureImpl &&
-            (identical(other.floor, floor) || other.floor == floor) &&
-            (identical(other.building, building) ||
-                other.building == building) &&
-            (identical(other.feature, feature) || other.feature == feature));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, floor, building, feature);
 
   @JsonKey(ignore: true)
   @override

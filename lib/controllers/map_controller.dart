@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:anyhow/anyhow.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map/src/gestures/positioned_tap_detector_2.dart';
 import 'package:geojson_vi/geojson_vi.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
@@ -95,8 +94,8 @@ class MyMapController extends GetxController {
         // print(feature?.properties);
         if (feature == null) continue;
         // print(feature.properties);
-        final parsed = parseFeature(
-            feature.properties ?? <String, dynamic>{}, feature.geometry);
+        final parsed = parseFeature(feature.properties ?? <String, dynamic>{},
+            feature.geometry, feature.id);
         if (parsed case Ok(:final ok)) {
           featuresList.add(ok);
         }

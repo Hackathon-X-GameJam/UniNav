@@ -22,6 +22,7 @@ String formatGraphFeature(GraphFeature feature) {
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+
   group('findAdjacent', () {
     late MyMapController mapController;
     late List<Feature> allFeatures;
@@ -34,6 +35,69 @@ void main() {
       allFeatures = mapController.features;
     });
 
+    test('generates a graph (new)', () {
+      // Find a building feature
+      // final buildingFeature = allFeatures.firstWhere((f) => f.type is Building);
+      final buildingFeature = allFeatures
+          .firstWhere((f) => f.type is Building && eq(f.name, 'o28'));
+
+      // final endFeature = allFeatures
+      //     .firstWhere((f) => f.type is Building && eq(f.name, 'o25'));
+
+      // final targetFeature = allFeatures
+      //     .firstWhere((f) => f.type is LectureHall && eq(f.name, 'H22'));
+
+      // final wrapped =
+      //     wrap(targetFeature, targetFeature.level!, targetFeature.building!);
+      // print(wrapped);
+
+      final graph = makeGraph(
+          wrap(buildingFeature, 2, buildingFeature.name).first, allFeatures);
+
+      final wrapped = [
+        graph.nodes.firstWhere((element) =>
+            element is BasicFeature && eq(element.feature.name, "H22"))
+      ];
+
+      print(graph.contains(wrapped.first)); // print(graph);
+      print(wrapped.first.hashCode); // print(graph);
+      // print(wrap(targetFeature, targetFeature.level!, targetFeature.building!)
+      //     .first
+      //     .hashCode);
+      // print(wrapped.first ==
+      //     wrap(targetFeature, targetFeature.level!, targetFeature.building!)
+      //         .first);
+
+      // print(graph.toString());
+    });
+
+    test('tries to find a path through the graph using own method', () async {
+      // Find a building feature
+      // final buildingFeature = allFeatures.firstWhere((f) => f.type is Building);
+      final startFeature = allFeatures
+          .firstWhere((f) => f.type is Building && eq(f.name, 'o25'));
+
+      // final endFeature = allFeatures
+      //     .firstWhere((f) => f.type is Building && eq(f.name, 'o25'));
+
+      final endFeature = allFeatures
+          .firstWhere((f) => f.type is LectureHall && eq(f.name, 'H22'));
+
+      print(endFeature);
+
+      final path = findShortestPath(
+        wrap(startFeature, 4, startFeature.name).first,
+        (f) => f is BasicFeature && eq(f.feature.name, 'H1'),
+        // wrap(endFeature, 2, "o28").first,
+        allFeatures,
+      );
+      print(path
+          .unwrap()
+          .map((e) => "${formatGraphFeature(e.$1)} (${e.$2}m)")
+          .join(' -> '));
+    });
+
+/*
     test('generates a graph', () {
       // Find a building feature
       // final buildingFeature = allFeatures.firstWhere((f) => f.type is Building);
@@ -171,6 +235,7 @@ void main() {
 
       print(path.map(formatGraphFeature).join('\n'));
     });
+    */
     */
   });
 }

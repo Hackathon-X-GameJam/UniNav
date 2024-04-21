@@ -22,6 +22,7 @@ mixin _$Feature {
   GeoJSONGeometry get geometry => throw _privateConstructorUsedError;
   int? get level => throw _privateConstructorUsedError;
   String? get building => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $FeatureCopyWith<Feature> get copyWith => throw _privateConstructorUsedError;
@@ -38,7 +39,8 @@ abstract class $FeatureCopyWith<$Res> {
       String? description,
       GeoJSONGeometry geometry,
       int? level,
-      String? building});
+      String? building,
+      String id});
 
   $FeatureTypeCopyWith<$Res> get type;
 }
@@ -62,6 +64,7 @@ class _$FeatureCopyWithImpl<$Res, $Val extends Feature>
     Object? geometry = null,
     Object? level = freezed,
     Object? building = freezed,
+    Object? id = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -88,6 +91,10 @@ class _$FeatureCopyWithImpl<$Res, $Val extends Feature>
           ? _value.building
           : building // ignore: cast_nullable_to_non_nullable
               as String?,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -113,7 +120,8 @@ abstract class _$$FeatureImplCopyWith<$Res> implements $FeatureCopyWith<$Res> {
       String? description,
       GeoJSONGeometry geometry,
       int? level,
-      String? building});
+      String? building,
+      String id});
 
   @override
   $FeatureTypeCopyWith<$Res> get type;
@@ -136,6 +144,7 @@ class __$$FeatureImplCopyWithImpl<$Res>
     Object? geometry = null,
     Object? level = freezed,
     Object? building = freezed,
+    Object? id = null,
   }) {
     return _then(_$FeatureImpl(
       name: null == name
@@ -162,6 +171,10 @@ class __$$FeatureImplCopyWithImpl<$Res>
           ? _value.building
           : building // ignore: cast_nullable_to_non_nullable
               as String?,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -175,7 +188,8 @@ class _$FeatureImpl extends _Feature {
       this.description,
       required this.geometry,
       this.level,
-      this.building})
+      this.building,
+      required this.id})
       : super._();
 
   @override
@@ -190,10 +204,12 @@ class _$FeatureImpl extends _Feature {
   final int? level;
   @override
   final String? building;
+  @override
+  final String id;
 
   @override
   String toString() {
-    return 'Feature(name: $name, type: $type, description: $description, geometry: $geometry, level: $level, building: $building)';
+    return 'Feature(name: $name, type: $type, description: $description, geometry: $geometry, level: $level, building: $building, id: $id)';
   }
 
   @override
@@ -209,12 +225,13 @@ class _$FeatureImpl extends _Feature {
                 other.geometry == geometry) &&
             (identical(other.level, level) || other.level == level) &&
             (identical(other.building, building) ||
-                other.building == building));
+                other.building == building) &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, name, type, description, geometry, level, building);
+      runtimeType, name, type, description, geometry, level, building, id);
 
   @JsonKey(ignore: true)
   @override
@@ -230,7 +247,8 @@ abstract class _Feature extends Feature {
       final String? description,
       required final GeoJSONGeometry geometry,
       final int? level,
-      final String? building}) = _$FeatureImpl;
+      final String? building,
+      required final String id}) = _$FeatureImpl;
   const _Feature._() : super._();
 
   @override
@@ -245,6 +263,8 @@ abstract class _Feature extends Feature {
   int? get level;
   @override
   String? get building;
+  @override
+  String get id;
   @override
   @JsonKey(ignore: true)
   _$$FeatureImplCopyWith<_$FeatureImpl> get copyWith =>

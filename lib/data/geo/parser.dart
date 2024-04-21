@@ -4,7 +4,7 @@ import 'package:uninav/data/geo/model.dart';
 import 'package:yaml/yaml.dart';
 
 Result<Feature> parseFeature(
-    Map<String, dynamic> properties, GeoJSONGeometry geometry) {
+    Map<String, dynamic> properties, GeoJSONGeometry geometry, String id) {
   final name = properties['name'] as String?;
   final description_yaml = properties['description'] as String? ?? '';
   final layer = properties['layer'] as String?;
@@ -110,6 +110,7 @@ Result<Feature> parseFeature(
     geometry: geometry,
     level: level,
     building: building,
+    id: id,
   ));
 }
 

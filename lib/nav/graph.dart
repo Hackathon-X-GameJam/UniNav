@@ -1,11 +1,11 @@
 import 'package:anyhow/anyhow.dart';
 import 'package:collection/collection.dart';
-import 'package:directed_graph/directed_graph.dart';
 import 'package:fast_immutable_collections/fast_immutable_collections.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:geojson_vi/geojson_vi.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:rust_core/iter.dart';
 import 'package:uninav/data/geo/model.dart';
 import 'package:uninav/util/geojson_util.dart';
 import 'package:uninav/util/util.dart';
@@ -38,6 +38,12 @@ class GraphFeature with _$GraphFeature {
 
   double metersTo(GraphFeature other) => distanceTo(other, "meters");
 
+  String get id => when(
+        buildingFloor: (floor, building) => building.id,
+        portal: (fromFloor, from, toFloor, to, baseFeature) => baseFeature.id,
+        basicFeature: (floor, building, feature) => feature.id,
+      );
+
   @override
   String toString() {
     return when(
@@ -48,9 +54,102 @@ class GraphFeature with _$GraphFeature {
           'Feature (${formatFeatureTitle(feature)} ($building:$floor))',
     );
   }
+
+  @override
+  int get hashCode {
+    return when(
+      buildingFloor: (floor, building) => Object.hash(floor, building),
+      portal: (fromFloor, from, toFloor, to, baseFeature) =>
+          Object.hash(fromFloor, from, toFloor, to, baseFeature),
+      basicFeature: (floor, building, feature) =>
+          Object.hash(floor, building, feature),
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is GraphFeature &&
+        other.when(
+          buildingFloor: (floor, building) =>
+              this is BuildingFloor &&
+              (this as BuildingFloor).floor == floor &&
+              (this as BuildingFloor).building == building,
+          portal: (fromFloor, from, toFloor, to, baseFeature) =>
+              this is Portal &&
+              (this as Portal).fromFloor == fromFloor &&
+              (this as Portal).from == from &&
+              (this as Portal).toFloor == toFloor &&
+              (this as Portal).to == to &&
+              (this as Portal).baseFeature == baseFeature,
+          basicFeature: (floor, building, feature) =>
+              this is BasicFeature &&
+              (this as BasicFeature).floor == floor &&
+              (this as BasicFeature).building == building &&
+              (this as BasicFeature).feature == feature,
+        );
+  }
 }
 
-bool eq(String? a, String? b) => a?.toLowerCase() == b?.toLowerCase();
+class Graph {
+  final List<(GraphFeature, double, GraphFeature)> _edges = [];
+  final HashSet<GraphFeature> _nodes = HashSet();
+  final HashSet<(GraphFeature, GraphFeature)> _edgesSet = HashSet();
+
+  Iterable<GraphFeature> get nodes => _nodes.iter();
+
+  void addNode(GraphFeature node) {
+    _nodes.add(node);
+    if (node is BasicFeature && node.feature.name == 'H22') {
+      print(node);
+      print(node.hashCode);
+    }
+  }
+
+  void addEdge(GraphFeature from, GraphFeature to, double weight) {
+    addNode(from);
+    addNode(to);
+    if (!_edgesSet.contains((from, to))) {
+      _edgesSet.add((from, to));
+      _edges.add((from, weight, to));
+    }
+    if (!_edgesSet.contains((to, from))) {
+      _edgesSet.add((to, from));
+      _edges.add((to, weight, from));
+    }
+  }
+
+  List<(GraphFeature, double, GraphFeature)> getEdges(GraphFeature node) {
+    return _edges.where((edge) => edge.$1 == node).toList();
+  }
+
+  bool contains(GraphFeature node) {
+    return _nodes.contains(node);
+  }
+
+  bool containsEdge(GraphFeature from, GraphFeature to) {
+    return _edgesSet.contains((from, to));
+  }
+
+  @override
+  String toString() {
+    return 'Graph(_edges: $_edges, _nodes: $_nodes, _edgesSet: $_edgesSet)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is Graph &&
+        listEquals(other._edges, _edges) &&
+        setEquals(other._nodes, _nodes) &&
+        setEquals(other._edgesSet, _edgesSet);
+  }
+
+  @override
+  int get hashCode => _edges.hashCode ^ _nodes.hashCode ^ _edgesSet.hashCode;
+}
 
 IList<GraphFeature> wrap(Feature feature, int floor, String buildingFrom) {
   return feature.type
@@ -60,7 +159,10 @@ IList<GraphFeature> wrap(Feature feature, int floor, String buildingFrom) {
         lift: (floors) => stairPortalGenerator(floors, floor, feature, 99),
         door: (connections) =>
             doorPortalGenerator(connections, floor, buildingFrom, feature),
-        orElse: () => [GraphFeature.basicFeature(floor, buildingFrom, feature)],
+        orElse: () => [
+          GraphFeature.basicFeature(
+              floor, feature.building ?? buildingFrom, feature)
+        ],
       )
       .lock;
 }
@@ -70,8 +172,7 @@ List<GraphFeature> doorPortalGenerator(
   final portals = <GraphFeature>[];
 
   for (final connection in connections.where((c) => !eq(c, from))) {
-    portals.add(GraphFeature.portal(
-        floor, from, floor, connection.toLowerCase(), feature));
+    portals.add(GraphFeature.portal(floor, from, floor, connection, feature));
   }
 
   return portals;
@@ -83,12 +184,12 @@ List<GraphFeature> stairPortalGenerator(
   final portals = <GraphFeature>[];
   for (int i = 1; i <= maxDist; i++) {
     if (floors.contains(floor - i)) {
-      portals.add(GraphFeature.portal(floor, feature.building!.toLowerCase(),
-          floor - i, feature.building!.toLowerCase(), feature));
+      portals.add(GraphFeature.portal(
+          floor, feature.building!, floor - i, feature.building!, feature));
     }
     if (floors.contains(floor + i)) {
-      portals.add(GraphFeature.portal(floor, feature.building!.toLowerCase(),
-          floor + i, feature.building!.toLowerCase(), feature));
+      portals.add(GraphFeature.portal(
+          floor, feature.building!, floor + i, feature.building!, feature));
     }
   }
   return portals;
@@ -142,117 +243,34 @@ List<GraphFeature> findAdjacent(
   return adjacentFeatures;
 }
 
-List<GraphFeature> createGraphList(
-    GraphFeature origin, List<Feature> allFeatures,
-    [Set<GraphFeature>? visited]) {
+Graph makeGraph(GraphFeature origin, List<Feature> allFeatures,
+    [Graph? graph]) {
   // final usedFeatures = <GraphFeature>[origin];
 
-  visited ??= <GraphFeature>{origin};
+  graph ??= Graph();
+  graph.addNode(origin);
 
   final adjacent = findAdjacent(origin, allFeatures);
-  for (final feature in adjacent.asSet()..removeAll(visited)) {
-    visited.add(feature);
-    final deeper = createGraphList(feature, allFeatures, visited);
-    visited.addAll(deeper);
+  for (final feature in adjacent.asSet()..removeAll(graph.nodes)) {
+    graph.addEdge(origin, feature, origin.metersTo(feature));
+    final _ = makeGraph(feature, allFeatures, graph);
+    // graph.addAll(deeper);
   }
 
-  return visited.toList();
-}
-
-Map<GraphFeature, Map<GraphFeature, double>> createGraphMap(
-    GraphFeature origin, List<Feature> allFeatures) {
-  final graphList = createGraphList(origin, allFeatures);
-  final graphMap = <GraphFeature, Map<GraphFeature, double>>{};
-  for (final node in graphList) {
-    final adjacents = node.when(
-      buildingFloor: (floor, building) {
-        return graphList
-            .where((f) =>
-                f is Portal &&
-                    eq(f.from, building.name) &&
-                    f.fromFloor == floor ||
-                f is BasicFeature &&
-                    eq(f.building, building.name) &&
-                    f.floor == floor)
-            .map((f) => f.when(
-                  portal: (fromFloor, from, toFloor, to, baseFeature) => (
-                    f,
-                    f.metersTo(node),
-                  ),
-                  basicFeature: (floor, building, feature) =>
-                      (f, f.metersTo(node)),
-                  buildingFloor: (floor, building) => throw StateError(
-                      "BUG: createGraphMap(): BuildingFloors shouldn't "
-                      "be matched by BuildingFloors"),
-                ));
-      },
-      portal: (fromFloor, from, toFloor, to, baseFeature) {
-        return graphList
-            .where((f) =>
-                f is BuildingFloor &&
-                eq(f.building.name, to) &&
-                f.floor == toFloor)
-            .map((f) => f.when(
-                  portal: (fromFloor, from, toFloor, to, baseFeature) =>
-                      throw StateError(
-                          "BUG: createGraphMap(): Portals shouldn't "
-                          "be matched by Portals"),
-                  basicFeature: (floor, building, feature) => throw StateError(
-                      "BUG: createGraphMap(): BasicFeatures shouldn't "
-                      "be matched by BasicFeatures"),
-                  buildingFloor: (floor, building) => (
-                    f,
-                    f.metersTo(node) +
-                        5 /* 5 extra meters for all portals. TODO: smarter!*/
-                  ),
-                ));
-      },
-      basicFeature: (floor, building, feature) {
-        return graphList
-            .where((f) =>
-                f is BuildingFloor &&
-                eq(f.building.name, building) &&
-                f.floor == floor)
-            .map((f) => f.when(
-                  portal: (fromFloor, from, toFloor, to, baseFeature) =>
-                      throw StateError(
-                          "BUG: createGraphMap(): Portal shouldn't be matched "
-                          "by BasicFeature"),
-                  basicFeature: (floor, building, feature) => throw StateError(
-                      "BUG: createGraphMap(): BasicFeatures shouldn't "
-                      "be matched by BasicFeatures"),
-                  buildingFloor: (floor, building) => (f, f.metersTo(node)),
-                ));
-      },
-    );
-
-    graphMap[node] =
-        Map.fromEntries(adjacents.map((tup) => MapEntry(tup.$1, tup.$2)));
-  }
-
-  return graphMap;
-}
-
-WeightedDirectedGraph<GraphFeature, double> createGraph(
-    GraphFeature origin, List<Feature> allFeatures) {
-  final map = createGraphMap(origin, allFeatures);
-  final graph = WeightedDirectedGraph<GraphFeature, double>(
-    map,
-    summation: sum,
-    zero: 0.0,
-    comparator: (a, b) => compareGraphFeatures(a, b),
-  );
   return graph;
 }
 
-Result<List<(GraphFeature, double)>> findShortestPath(
-    GraphFeature origin, GraphFeature destination, List<Feature> allFeatures,
-    [heuristicVariant = "zero", heuristicMultiplier = 0.2]) {
-  var graph = createGraphMap(origin, allFeatures);
+Result<List<(GraphFeature, double)>> findShortestPath(GraphFeature origin,
+    bool Function(GraphFeature) destinationSelector, List<Feature> allFeatures,
+    {heuristicVariant = "zero", heuristicMultiplier = 0.2}) {
+  Graph graph = makeGraph(origin, allFeatures);
 
-  if (!(graph.keys.contains(origin) &&
-      graph.values.firstWhereOrNull((vals) => vals.containsKey(destination)) !=
-          null)) {
+  final GraphFeature? destination =
+      graph.nodes.firstWhereOrNull(destinationSelector);
+
+  if (!(graph.contains(origin) &&
+      destination != null &&
+      graph.contains(destination))) {
     return bail("Origin or destination not in graph");
   }
 
@@ -299,10 +317,10 @@ Result<List<(GraphFeature, double)>> findShortestPath(
     }
 
     // expand node
-    final adjacents = graph[node]!;
-    for (final entry in adjacents.entries) {
-      final adjNode = entry.key;
-      final adjCost = entry.value;
+    final edges = graph.getEdges(node);
+    for (final entry in edges) {
+      final adjNode = entry.$3;
+      final adjCost = entry.$2;
 
       if (closedlist.contains(adjNode)) {
         continue;
@@ -348,78 +366,4 @@ Result<List<(GraphFeature, double)>> findShortestPath(
   }
 
   return bail("No path found");
-}
-
-/// Compares two [GraphFeature] instances and determines their relative order.
-///
-/// The comparison is based on the specific subtypes and properties of the
-/// [GraphFeature] instances. The comparison logic is as follows:
-///
-/// 1. If both instances are [BuildingFloor], they are compared first by the
-///    building name and then by the floor number.
-/// 2. If one instance is a [Portal] and the other is a [BuildingFloor] or
-///    [BasicFeature], the [Portal] is considered greater.
-/// 3. If both instances are [Portal], they are compared first by the `from`
-///    property, then by the `to` property, and finally by the `baseFeature` name.
-/// 4. If one instance is a [BasicFeature] and the other is a [BuildingFloor] or
-///    [Portal], the [BasicFeature] is considered greater.
-/// 5. If both instances are [BasicFeature], they are compared first by the
-///    building name, then by the floor number, and finally by the feature name.
-///
-/// Returns a negative value if [a] is considered "less than" [b], a positive
-/// value if [a] is considered "greater than" [b], and zero if they are considered
-/// equal.
-///
-/// This function can be used as a comparator for sorting or ordering
-/// [GraphFeature] instances.
-int compareGraphFeatures(GraphFeature a, GraphFeature b) {
-  return a.when(
-    buildingFloor: (floorA, buildingA) {
-      return b.when(
-        buildingFloor: (floorB, buildingB) {
-          final buildingComparison = buildingA.name.compareTo(buildingB.name);
-          if (buildingComparison != 0) {
-            return buildingComparison;
-          }
-          return floorA.compareTo(floorB);
-        },
-        portal: (fromFloorB, fromB, toFloorB, toB, baseFeatureB) => -1,
-        basicFeature: (floorB, buildingB, featureB) => -1,
-      );
-    },
-    portal: (fromFloorA, fromA, toFloorA, toA, baseFeatureA) {
-      return b.when(
-        buildingFloor: (floorB, buildingB) => 1,
-        portal: (fromFloorB, fromB, toFloorB, toB, baseFeatureB) {
-          final fromComparison = fromA.compareTo(fromB);
-          if (fromComparison != 0) {
-            return fromComparison;
-          }
-          final toComparison = toA.compareTo(toB);
-          if (toComparison != 0) {
-            return toComparison;
-          }
-          return baseFeatureA.name.compareTo(baseFeatureB.name);
-        },
-        basicFeature: (floorB, buildingB, featureB) => -1,
-      );
-    },
-    basicFeature: (floorA, buildingA, featureA) {
-      return b.when(
-        buildingFloor: (floorB, buildingB) => 1,
-        portal: (fromFloorB, fromB, toFloorB, toB, baseFeatureB) => 1,
-        basicFeature: (floorB, buildingB, featureB) {
-          final buildingComparison = buildingA.compareTo(buildingB);
-          if (buildingComparison != 0) {
-            return buildingComparison;
-          }
-          final floorComparison = floorA.compareTo(floorB);
-          if (floorComparison != 0) {
-            return floorComparison;
-          }
-          return featureA.name.compareTo(featureB.name);
-        },
-      );
-    },
-  );
 }
