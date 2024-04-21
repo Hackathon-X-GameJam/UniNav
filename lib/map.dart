@@ -1,7 +1,9 @@
 import 'package:anim_search_bar/anim_search_bar.dart';
+import 'package:anyhow/anyhow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_map/flutter_map.dart';
+import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:rust_core/slice.dart';
@@ -42,8 +44,10 @@ class MapPage extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
             // Add onPressed logic here
+            var future = Get.find<MyMapController>().getCurrentPosition();
+            locationBottomSheet();
           },
-          child: const Icon(Icons.add),
+          child: const Icon(Icons.location_searching),
         ),
         body: Stack(
           children: [
@@ -105,6 +109,7 @@ class MapPage extends StatelessWidget {
                     Get.find<MyMapController>().currentLevel.value,
                   )),
                 ),
+                CurrentLocationLayer(),
               ],
             ),
             Positioned(
@@ -175,4 +180,172 @@ class MapPage extends StatelessWidget {
           ],
         ));
   }
+}
+
+void locationBottomSheet() {
+  print(Get.find<MyMapController>().position.value);
+  String buttonText = "Search for Location";
+  IconData locationIcon = Icons.location_searching;
+  bool spinner = false;
+  Get.bottomSheet(
+    Theme(
+      data: ThemeData.light(),
+      child: Container(
+        constraints: const BoxConstraints(
+            // minHeight: 300,
+            ),
+        width: Get.mediaQuery.size.width,
+        decoration: const BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+        ),
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Center(
+              child: Container(
+                width: 50,
+                height: 5,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'Select Location',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(height: 20),
+            Row(
+              children: [
+                Expanded(
+                  flex: 2,
+                  child: Container(
+                    height: 300,
+                    color: Colors.transparent,
+                  ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: StatefulBuilder(builder: (context, setState) {
+                    // TODO: make this persist closing the bottom sheet
+                    return ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        fixedSize: const Size(300, 300),
+                        backgroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        padding: const EdgeInsets.all(15),
+                      ),
+                      onPressed: () async {
+                        if (spinner) {
+                          return;
+                        }
+                        setState(() {
+                          buttonText = "Searching...";
+                          locationIcon = Icons.location_searching;
+                          spinner = true;
+                        });
+                        final pos = await Get.find<MyMapController>()
+                            .getCurrentPosition();
+                        if (!context.mounted) {
+                          return;
+                        }
+                        if (pos case Ok(:final ok)) {
+                          setState(() {
+                            buttonText = "Location found!";
+                            locationIcon = Icons.my_location;
+                            spinner = false;
+                          });
+                        } else {
+                          setState(() {
+                            buttonText = "Location not found! Try again";
+                            locationIcon = Icons.error;
+                            spinner = false;
+                          });
+                        }
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Icon(locationIcon,
+                                  size: 80,
+                                  color: Get.theme.colorScheme.inversePrimary),
+                              if (spinner)
+                                CircularProgressIndicator(
+                                  color: Get.theme.colorScheme.inversePrimary,
+                                ),
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                          Text(
+                            buttonText,
+                            softWrap: true,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+                ),
+              ],
+            ),
+            /*
+            ListTile(
+              title: const Text(
+                'Current Location',
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                Get.back();
+              },
+            ),
+            ListTile(
+              title: const Text(
+                'Search Location',
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                Get.back();
+              },
+            ),
+            const SizedBox(height: 20),
+            */
+            ElevatedButton(
+              child: const Text(
+                'Cancel',
+                style: TextStyle(color: Colors.black),
+              ),
+              onPressed: () {
+                Get.back();
+              },
+            ),
+          ],
+        ),
+      ),
+    ),
+    isScrollControlled: true,
+    enterBottomSheetDuration: const Duration(milliseconds: 150),
+    exitBottomSheetDuration: const Duration(milliseconds: 200),
+  );
 }

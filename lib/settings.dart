@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:uninav/components/drawer.dart';
 import 'package:uninav/components/hamburger_menu.dart';
-import 'package:uninav/controllers/isar_controller.dart';
+import 'package:uninav/controllers/shared_prefs_controller.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final isarController = Get.find<IsarController>();
-    final settings = isarController.settings;
+    final persistenceController = Get.find<SharedPrefsController>();
+    final settings = persistenceController.settings;
 
     return Scaffold(
       appBar: AppBar(
@@ -32,90 +32,90 @@ class SettingsPage extends StatelessWidget {
                     ),
                     value: settings.value.showIcons,
                     onChanged: (value) {
-                      settings.update((val) {
-                        val?.showIcons = value;
-                      });
-                      isarController.persistSettings();
+                      settings.value = settings.value.copyWith(
+                        showIcons: value,
+                      );
+                      persistenceController.persistSettings();
                     },
                   ),
                   SwitchListTile(
                     title: const Text('Show Elevators'),
                     value: settings.value.showElevators,
                     onChanged: (value) {
-                      settings.update((val) {
-                        val?.showElevators = value;
-                      });
-                      isarController.persistSettings();
+                      settings.value = settings.value.copyWith(
+                        showElevators: value,
+                      );
+                      persistenceController.persistSettings();
                     },
                   ),
                   SwitchListTile(
                     title: const Text('Show Food and Drink'),
                     value: settings.value.showFoodAndDrink,
                     onChanged: (value) {
-                      settings.update((val) {
-                        val?.showFoodAndDrink = value;
-                      });
-                      isarController.persistSettings();
+                      settings.value = settings.value.copyWith(
+                        showFoodAndDrink: value,
+                      );
+                      persistenceController.persistSettings();
                     },
                   ),
                   SwitchListTile(
                     title: const Text('Show Lecture Halls'),
                     value: settings.value.showLectureHalls,
                     onChanged: (value) {
-                      settings.update((val) {
-                        val?.showLectureHalls = value;
-                      });
-                      isarController.persistSettings();
+                      settings.value = settings.value.copyWith(
+                        showLectureHalls: value,
+                      );
+                      persistenceController.persistSettings();
                     },
                   ),
                   SwitchListTile(
                     title: const Text('Show Computer Pools'),
                     value: settings.value.showComputerPools,
                     onChanged: (value) {
-                      settings.update((val) {
-                        val?.showComputerPools = value;
-                      });
-                      isarController.persistSettings();
+                      settings.value = settings.value.copyWith(
+                        showComputerPools: value,
+                      );
+                      persistenceController.persistSettings();
                     },
                   ),
                   SwitchListTile(
                     title: const Text('Show Seminar Rooms'),
                     value: settings.value.showSeminarRooms,
                     onChanged: (value) {
-                      settings.update((val) {
-                        val?.showSeminarRooms = value;
-                      });
-                      isarController.persistSettings();
+                      settings.value = settings.value.copyWith(
+                        showSeminarRooms: value,
+                      );
+                      persistenceController.persistSettings();
                     },
                   ),
                   SwitchListTile(
                     title: const Text('Show Toilets'),
                     value: settings.value.showToilets,
                     onChanged: (value) {
-                      settings.update((val) {
-                        val?.showToilets = value;
-                      });
-                      isarController.persistSettings();
+                      settings.value = settings.value.copyWith(
+                        showToilets: value,
+                      );
+                      persistenceController.persistSettings();
                     },
                   ),
                   SwitchListTile(
                     title: const Text('Show Stairs'),
                     value: settings.value.showStairs,
                     onChanged: (value) {
-                      settings.update((val) {
-                        val?.showStairs = value;
-                      });
-                      isarController.persistSettings();
+                      settings.value = settings.value.copyWith(
+                        showStairs: value,
+                      );
+                      persistenceController.persistSettings();
                     },
                   ),
                   SwitchListTile(
                     title: const Text('Show Doors'),
                     value: settings.value.showDoors,
                     onChanged: (value) {
-                      settings.update((val) {
-                        val?.showDoors = value;
-                      });
-                      isarController.persistSettings();
+                      settings.value = settings.value.copyWith(
+                        showDoors: value,
+                      );
+                      persistenceController.persistSettings();
                     },
                   ),
                   const SizedBox(height: 12),
@@ -127,37 +127,37 @@ class SettingsPage extends StatelessWidget {
                     title: const Text('Male Toilets'),
                     value: settings.value.maleToilets,
                     onChanged: (value) {
-                      settings.update((val) {
-                        val?.maleToilets = value ?? false;
-                      });
-                      isarController.persistSettings();
+                      settings.value = settings.value.copyWith(
+                        maleToilets: value ?? false,
+                      );
+                      persistenceController.persistSettings();
                     },
                   ),
                   CheckboxListTile(
                     title: const Text('Female Toilets'),
                     value: settings.value.femaleToilets,
                     onChanged: (value) {
-                      settings.update((val) {
-                        val?.femaleToilets = value ?? false;
-                      });
-                      isarController.persistSettings();
+                      settings.value = settings.value.copyWith(
+                        femaleToilets: value ?? false,
+                      );
+                      persistenceController.persistSettings();
                     },
                   ),
                   CheckboxListTile(
                     title: const Text('Handicap Toilets'),
                     value: settings.value.handicapToilets,
                     onChanged: (value) {
-                      settings.update((val) {
-                        val?.handicapToilets = value ?? false;
-                      });
-                      isarController.persistSettings();
+                      settings.value = settings.value.copyWith(
+                        handicapToilets: value ?? false,
+                      );
+                      persistenceController.persistSettings();
                     },
                   ),
                   const SizedBox(height: 12),
                   ElevatedButton(
                     onPressed: () {
-                      settings.value = Settings();
-                      isarController.persistSettings();
+                      settings.value = const Settings();
+                      persistenceController.persistSettings();
                     },
                     child: const Text("Reset Settings"),
                   ),

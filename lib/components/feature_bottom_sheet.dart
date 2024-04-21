@@ -107,7 +107,9 @@ List<Widget> _buildFeatureContent(Feature feature) {
   return feature.type.when(
     building: () => _buildBuildingContent(feature),
     lectureHall: () => _buildLectureHallContent(feature),
-    room: () => _buildRoomContent(feature),
+    room: (number) => _buildRoomContent(feature, number),
+    pcPool: (number) => _buildPcPoolContent(feature, number),
+    foodDrink: () => _buildFoodAndDrinkContent(feature),
     door: (connects) => _buildDoorContent(feature, connects),
     toilet: (toiletType) => _buildToiletContent(feature, toiletType),
     stairs: (connectsLevels) => _buildStairsContent(feature, connectsLevels),
@@ -130,8 +132,16 @@ List<Widget> _buildLectureHallContent(Feature feature) {
 }
 
 /// Builds the content for the Room feature type.
-List<Widget> _buildRoomContent(Feature feature) {
+List<Widget> _buildRoomContent(Feature feature, String roomNumber) {
   return [Text('Room: ${feature.name}')];
+}
+
+List<Widget> _buildPcPoolContent(Feature feature, String roomNumber) {
+  return [Text('PC Pool: ${feature.name}')];
+}
+
+List<Widget> _buildFoodAndDrinkContent(Feature feature) {
+  return [Text('${feature.name} (Food/Drink)')];
 }
 
 /// Builds the content for the Door feature type.

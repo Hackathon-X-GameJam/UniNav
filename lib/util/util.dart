@@ -26,7 +26,9 @@ String formatFeatureTitle(Feature feature) {
   return feature.type.when(
     building: () => '${feature.name} (Building)',
     lectureHall: () => '${feature.name} (Lecture Hall)',
-    room: () => 'Room ${feature.name}',
+    room: (number) => 'Room ${feature.building ?? "??"}/$number',
+    pcPool: (number) => 'PC Pool ${feature.name}',
+    foodDrink: () => '${feature.name} (Food/Drink)',
     door: (_) => 'Door',
     toilet: (type) => 'Toilet (${formatToiletType(feature.type as Toilet)})',
     stairs: (_) => 'Stairs',

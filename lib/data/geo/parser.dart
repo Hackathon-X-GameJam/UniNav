@@ -20,17 +20,20 @@ Result<Feature> parseFeature(
 
   // try parse yaml
   if (description_yaml == null) {
-    print("warn: Description key is missing for feature $name");
+    print(
+        "warn: Description key is missing for feature $name\n\n$geometry\n\n$properties");
   }
 
   if (layer == null) {
-    return bail("Layer key \'layer\' is missing for feature $name");
+    return bail(
+        "Layer key \'layer\' is missing for feature $name\n\n$geometry\n\n$properties");
   }
   dynamic yaml;
   try {
     yaml = loadYaml(description_yaml);
   } on YamlException catch (e) {
-    return bail("Couldn't parse YAML in description for feature $name: $e");
+    return bail(
+        "Couldn't parse YAML in description for feature $name\n\n$description_yaml\n\nError: $e");
   }
 
   yaml = yaml as YamlMap? ?? {};
@@ -70,8 +73,16 @@ Result<Feature> parseFeature(
       case 'lecture_hall':
         type = FeatureType.lectureHall();
         break;
-      case 'room':
-        type = FeatureType.room();
+      case 'seminar_room':
+        type = FeatureType.room(getYamlKeyStringify(yaml, 'number')
+            .expect("Couldn't parse 'number' for seminar_room feature $name"));
+        break;
+      case 'pc_pool':
+        type = FeatureType.pcPool(getYamlKeyStringify(yaml, 'number')
+            .expect("Couldn't parse 'number' for PcPool feature $name"));
+        break;
+      case 'food_drink':
+        type = FeatureType.foodDrink();
         break;
       case 'door':
         final list = getYamlList<String>(yaml, 'connects')
@@ -84,10 +95,8 @@ Result<Feature> parseFeature(
         type = FeatureType.toilet(toiletType);
         break;
       case 'public_transport':
-        final busLines = getYamlList<dynamic>(yaml, 'bus_lines')
-            .expect("Couldn't parse 'bus_lines' for feature $name");
-        final tramLines = getYamlList<dynamic>(yaml, 'tram_lines')
-            .expect("Couldn't parse 'tram_lines' for feature $name");
+        final busLines = getYamlList<dynamic>(yaml, 'bus_lines').unwrapOr([]);
+        final tramLines = getYamlList<dynamic>(yaml, 'tram_lines').unwrapOr([]);
 
         type = FeatureType.publicTransport(
           stringifyList(busLines)
@@ -142,6 +151,18 @@ Result<T> getYamlKey<T>(YamlMap yaml, String key) {
       return bail("Key $key is missing in yaml");
     }
     return Ok(val);
+  } catch (e) {
+    return bail("Failed to parse yaml key $key as ${T.toString()}: $e");
+  }
+}
+
+Result<String> getYamlKeyStringify<T>(YamlMap yaml, String key) {
+  try {
+    final val = yaml[key] as T?;
+    if (val == null) {
+      return bail("Key $key is missing in yaml");
+    }
+    return Ok(val.toString());
   } catch (e) {
     return bail("Failed to parse yaml key $key as ${T.toString()}: $e");
   }

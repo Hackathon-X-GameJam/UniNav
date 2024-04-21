@@ -99,11 +99,13 @@ class FeatureType with _$FeatureType {
   // multiple feature types like lecture hall, toliet, ...
   const factory FeatureType.building() = Building;
   const factory FeatureType.lectureHall() = LectureHall;
-  const factory FeatureType.room() = Room;
+  const factory FeatureType.room(String roomNumber) = Room;
   const factory FeatureType.door(List<String> connects) = Door;
   const factory FeatureType.toilet(String toilet_type) = Toilet;
   const factory FeatureType.stairs(List<int> connects_levels) = Stairs;
   const factory FeatureType.lift(List<int> connects_levels) = Lift;
+  const factory FeatureType.foodDrink() = FoodDrink;
   const factory FeatureType.publicTransport(
       List<String> bus_lines, List<String> tram_lines) = PublicTransport;
+  const factory FeatureType.pcPool(String roomNumber) = PcPool;
 }

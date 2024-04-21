@@ -277,39 +277,45 @@ mixin _$FeatureType {
   TResult when<TResult extends Object?>({
     required TResult Function() building,
     required TResult Function() lectureHall,
-    required TResult Function() room,
+    required TResult Function(String roomNumber) room,
     required TResult Function(List<String> connects) door,
     required TResult Function(String toilet_type) toilet,
     required TResult Function(List<int> connects_levels) stairs,
     required TResult Function(List<int> connects_levels) lift,
+    required TResult Function() foodDrink,
     required TResult Function(List<String> bus_lines, List<String> tram_lines)
         publicTransport,
+    required TResult Function(String roomNumber) pcPool,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? building,
     TResult? Function()? lectureHall,
-    TResult? Function()? room,
+    TResult? Function(String roomNumber)? room,
     TResult? Function(List<String> connects)? door,
     TResult? Function(String toilet_type)? toilet,
     TResult? Function(List<int> connects_levels)? stairs,
     TResult? Function(List<int> connects_levels)? lift,
+    TResult? Function()? foodDrink,
     TResult? Function(List<String> bus_lines, List<String> tram_lines)?
         publicTransport,
+    TResult? Function(String roomNumber)? pcPool,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? building,
     TResult Function()? lectureHall,
-    TResult Function()? room,
+    TResult Function(String roomNumber)? room,
     TResult Function(List<String> connects)? door,
     TResult Function(String toilet_type)? toilet,
     TResult Function(List<int> connects_levels)? stairs,
     TResult Function(List<int> connects_levels)? lift,
+    TResult Function()? foodDrink,
     TResult Function(List<String> bus_lines, List<String> tram_lines)?
         publicTransport,
+    TResult Function(String roomNumber)? pcPool,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -322,7 +328,9 @@ mixin _$FeatureType {
     required TResult Function(Toilet value) toilet,
     required TResult Function(Stairs value) stairs,
     required TResult Function(Lift value) lift,
+    required TResult Function(FoodDrink value) foodDrink,
     required TResult Function(PublicTransport value) publicTransport,
+    required TResult Function(PcPool value) pcPool,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -334,7 +342,9 @@ mixin _$FeatureType {
     TResult? Function(Toilet value)? toilet,
     TResult? Function(Stairs value)? stairs,
     TResult? Function(Lift value)? lift,
+    TResult? Function(FoodDrink value)? foodDrink,
     TResult? Function(PublicTransport value)? publicTransport,
+    TResult? Function(PcPool value)? pcPool,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -346,7 +356,9 @@ mixin _$FeatureType {
     TResult Function(Toilet value)? toilet,
     TResult Function(Stairs value)? stairs,
     TResult Function(Lift value)? lift,
+    TResult Function(FoodDrink value)? foodDrink,
     TResult Function(PublicTransport value)? publicTransport,
+    TResult Function(PcPool value)? pcPool,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -410,13 +422,15 @@ class _$BuildingImpl implements Building {
   TResult when<TResult extends Object?>({
     required TResult Function() building,
     required TResult Function() lectureHall,
-    required TResult Function() room,
+    required TResult Function(String roomNumber) room,
     required TResult Function(List<String> connects) door,
     required TResult Function(String toilet_type) toilet,
     required TResult Function(List<int> connects_levels) stairs,
     required TResult Function(List<int> connects_levels) lift,
+    required TResult Function() foodDrink,
     required TResult Function(List<String> bus_lines, List<String> tram_lines)
         publicTransport,
+    required TResult Function(String roomNumber) pcPool,
   }) {
     return building();
   }
@@ -426,13 +440,15 @@ class _$BuildingImpl implements Building {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? building,
     TResult? Function()? lectureHall,
-    TResult? Function()? room,
+    TResult? Function(String roomNumber)? room,
     TResult? Function(List<String> connects)? door,
     TResult? Function(String toilet_type)? toilet,
     TResult? Function(List<int> connects_levels)? stairs,
     TResult? Function(List<int> connects_levels)? lift,
+    TResult? Function()? foodDrink,
     TResult? Function(List<String> bus_lines, List<String> tram_lines)?
         publicTransport,
+    TResult? Function(String roomNumber)? pcPool,
   }) {
     return building?.call();
   }
@@ -442,13 +458,15 @@ class _$BuildingImpl implements Building {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? building,
     TResult Function()? lectureHall,
-    TResult Function()? room,
+    TResult Function(String roomNumber)? room,
     TResult Function(List<String> connects)? door,
     TResult Function(String toilet_type)? toilet,
     TResult Function(List<int> connects_levels)? stairs,
     TResult Function(List<int> connects_levels)? lift,
+    TResult Function()? foodDrink,
     TResult Function(List<String> bus_lines, List<String> tram_lines)?
         publicTransport,
+    TResult Function(String roomNumber)? pcPool,
     required TResult orElse(),
   }) {
     if (building != null) {
@@ -467,7 +485,9 @@ class _$BuildingImpl implements Building {
     required TResult Function(Toilet value) toilet,
     required TResult Function(Stairs value) stairs,
     required TResult Function(Lift value) lift,
+    required TResult Function(FoodDrink value) foodDrink,
     required TResult Function(PublicTransport value) publicTransport,
+    required TResult Function(PcPool value) pcPool,
   }) {
     return building(this);
   }
@@ -482,7 +502,9 @@ class _$BuildingImpl implements Building {
     TResult? Function(Toilet value)? toilet,
     TResult? Function(Stairs value)? stairs,
     TResult? Function(Lift value)? lift,
+    TResult? Function(FoodDrink value)? foodDrink,
     TResult? Function(PublicTransport value)? publicTransport,
+    TResult? Function(PcPool value)? pcPool,
   }) {
     return building?.call(this);
   }
@@ -497,7 +519,9 @@ class _$BuildingImpl implements Building {
     TResult Function(Toilet value)? toilet,
     TResult Function(Stairs value)? stairs,
     TResult Function(Lift value)? lift,
+    TResult Function(FoodDrink value)? foodDrink,
     TResult Function(PublicTransport value)? publicTransport,
+    TResult Function(PcPool value)? pcPool,
     required TResult orElse(),
   }) {
     if (building != null) {
@@ -551,13 +575,15 @@ class _$LectureHallImpl implements LectureHall {
   TResult when<TResult extends Object?>({
     required TResult Function() building,
     required TResult Function() lectureHall,
-    required TResult Function() room,
+    required TResult Function(String roomNumber) room,
     required TResult Function(List<String> connects) door,
     required TResult Function(String toilet_type) toilet,
     required TResult Function(List<int> connects_levels) stairs,
     required TResult Function(List<int> connects_levels) lift,
+    required TResult Function() foodDrink,
     required TResult Function(List<String> bus_lines, List<String> tram_lines)
         publicTransport,
+    required TResult Function(String roomNumber) pcPool,
   }) {
     return lectureHall();
   }
@@ -567,13 +593,15 @@ class _$LectureHallImpl implements LectureHall {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? building,
     TResult? Function()? lectureHall,
-    TResult? Function()? room,
+    TResult? Function(String roomNumber)? room,
     TResult? Function(List<String> connects)? door,
     TResult? Function(String toilet_type)? toilet,
     TResult? Function(List<int> connects_levels)? stairs,
     TResult? Function(List<int> connects_levels)? lift,
+    TResult? Function()? foodDrink,
     TResult? Function(List<String> bus_lines, List<String> tram_lines)?
         publicTransport,
+    TResult? Function(String roomNumber)? pcPool,
   }) {
     return lectureHall?.call();
   }
@@ -583,13 +611,15 @@ class _$LectureHallImpl implements LectureHall {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? building,
     TResult Function()? lectureHall,
-    TResult Function()? room,
+    TResult Function(String roomNumber)? room,
     TResult Function(List<String> connects)? door,
     TResult Function(String toilet_type)? toilet,
     TResult Function(List<int> connects_levels)? stairs,
     TResult Function(List<int> connects_levels)? lift,
+    TResult Function()? foodDrink,
     TResult Function(List<String> bus_lines, List<String> tram_lines)?
         publicTransport,
+    TResult Function(String roomNumber)? pcPool,
     required TResult orElse(),
   }) {
     if (lectureHall != null) {
@@ -608,7 +638,9 @@ class _$LectureHallImpl implements LectureHall {
     required TResult Function(Toilet value) toilet,
     required TResult Function(Stairs value) stairs,
     required TResult Function(Lift value) lift,
+    required TResult Function(FoodDrink value) foodDrink,
     required TResult Function(PublicTransport value) publicTransport,
+    required TResult Function(PcPool value) pcPool,
   }) {
     return lectureHall(this);
   }
@@ -623,7 +655,9 @@ class _$LectureHallImpl implements LectureHall {
     TResult? Function(Toilet value)? toilet,
     TResult? Function(Stairs value)? stairs,
     TResult? Function(Lift value)? lift,
+    TResult? Function(FoodDrink value)? foodDrink,
     TResult? Function(PublicTransport value)? publicTransport,
+    TResult? Function(PcPool value)? pcPool,
   }) {
     return lectureHall?.call(this);
   }
@@ -638,7 +672,9 @@ class _$LectureHallImpl implements LectureHall {
     TResult Function(Toilet value)? toilet,
     TResult Function(Stairs value)? stairs,
     TResult Function(Lift value)? lift,
+    TResult Function(FoodDrink value)? foodDrink,
     TResult Function(PublicTransport value)? publicTransport,
+    TResult Function(PcPool value)? pcPool,
     required TResult orElse(),
   }) {
     if (lectureHall != null) {
@@ -657,6 +693,8 @@ abstract class _$$RoomImplCopyWith<$Res> {
   factory _$$RoomImplCopyWith(
           _$RoomImpl value, $Res Function(_$RoomImpl) then) =
       __$$RoomImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String roomNumber});
 }
 
 /// @nodoc
@@ -665,41 +703,68 @@ class __$$RoomImplCopyWithImpl<$Res>
     implements _$$RoomImplCopyWith<$Res> {
   __$$RoomImplCopyWithImpl(_$RoomImpl _value, $Res Function(_$RoomImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? roomNumber = null,
+  }) {
+    return _then(_$RoomImpl(
+      null == roomNumber
+          ? _value.roomNumber
+          : roomNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$RoomImpl implements Room {
-  const _$RoomImpl();
+  const _$RoomImpl(this.roomNumber);
+
+  @override
+  final String roomNumber;
 
   @override
   String toString() {
-    return 'FeatureType.room()';
+    return 'FeatureType.room(roomNumber: $roomNumber)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RoomImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$RoomImpl &&
+            (identical(other.roomNumber, roomNumber) ||
+                other.roomNumber == roomNumber));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, roomNumber);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$RoomImplCopyWith<_$RoomImpl> get copyWith =>
+      __$$RoomImplCopyWithImpl<_$RoomImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() building,
     required TResult Function() lectureHall,
-    required TResult Function() room,
+    required TResult Function(String roomNumber) room,
     required TResult Function(List<String> connects) door,
     required TResult Function(String toilet_type) toilet,
     required TResult Function(List<int> connects_levels) stairs,
     required TResult Function(List<int> connects_levels) lift,
+    required TResult Function() foodDrink,
     required TResult Function(List<String> bus_lines, List<String> tram_lines)
         publicTransport,
+    required TResult Function(String roomNumber) pcPool,
   }) {
-    return room();
+    return room(roomNumber);
   }
 
   @override
@@ -707,15 +772,17 @@ class _$RoomImpl implements Room {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? building,
     TResult? Function()? lectureHall,
-    TResult? Function()? room,
+    TResult? Function(String roomNumber)? room,
     TResult? Function(List<String> connects)? door,
     TResult? Function(String toilet_type)? toilet,
     TResult? Function(List<int> connects_levels)? stairs,
     TResult? Function(List<int> connects_levels)? lift,
+    TResult? Function()? foodDrink,
     TResult? Function(List<String> bus_lines, List<String> tram_lines)?
         publicTransport,
+    TResult? Function(String roomNumber)? pcPool,
   }) {
-    return room?.call();
+    return room?.call(roomNumber);
   }
 
   @override
@@ -723,17 +790,19 @@ class _$RoomImpl implements Room {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? building,
     TResult Function()? lectureHall,
-    TResult Function()? room,
+    TResult Function(String roomNumber)? room,
     TResult Function(List<String> connects)? door,
     TResult Function(String toilet_type)? toilet,
     TResult Function(List<int> connects_levels)? stairs,
     TResult Function(List<int> connects_levels)? lift,
+    TResult Function()? foodDrink,
     TResult Function(List<String> bus_lines, List<String> tram_lines)?
         publicTransport,
+    TResult Function(String roomNumber)? pcPool,
     required TResult orElse(),
   }) {
     if (room != null) {
-      return room();
+      return room(roomNumber);
     }
     return orElse();
   }
@@ -748,7 +817,9 @@ class _$RoomImpl implements Room {
     required TResult Function(Toilet value) toilet,
     required TResult Function(Stairs value) stairs,
     required TResult Function(Lift value) lift,
+    required TResult Function(FoodDrink value) foodDrink,
     required TResult Function(PublicTransport value) publicTransport,
+    required TResult Function(PcPool value) pcPool,
   }) {
     return room(this);
   }
@@ -763,7 +834,9 @@ class _$RoomImpl implements Room {
     TResult? Function(Toilet value)? toilet,
     TResult? Function(Stairs value)? stairs,
     TResult? Function(Lift value)? lift,
+    TResult? Function(FoodDrink value)? foodDrink,
     TResult? Function(PublicTransport value)? publicTransport,
+    TResult? Function(PcPool value)? pcPool,
   }) {
     return room?.call(this);
   }
@@ -778,7 +851,9 @@ class _$RoomImpl implements Room {
     TResult Function(Toilet value)? toilet,
     TResult Function(Stairs value)? stairs,
     TResult Function(Lift value)? lift,
+    TResult Function(FoodDrink value)? foodDrink,
     TResult Function(PublicTransport value)? publicTransport,
+    TResult Function(PcPool value)? pcPool,
     required TResult orElse(),
   }) {
     if (room != null) {
@@ -789,7 +864,12 @@ class _$RoomImpl implements Room {
 }
 
 abstract class Room implements FeatureType {
-  const factory Room() = _$RoomImpl;
+  const factory Room(final String roomNumber) = _$RoomImpl;
+
+  String get roomNumber;
+  @JsonKey(ignore: true)
+  _$$RoomImplCopyWith<_$RoomImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -863,13 +943,15 @@ class _$DoorImpl implements Door {
   TResult when<TResult extends Object?>({
     required TResult Function() building,
     required TResult Function() lectureHall,
-    required TResult Function() room,
+    required TResult Function(String roomNumber) room,
     required TResult Function(List<String> connects) door,
     required TResult Function(String toilet_type) toilet,
     required TResult Function(List<int> connects_levels) stairs,
     required TResult Function(List<int> connects_levels) lift,
+    required TResult Function() foodDrink,
     required TResult Function(List<String> bus_lines, List<String> tram_lines)
         publicTransport,
+    required TResult Function(String roomNumber) pcPool,
   }) {
     return door(connects);
   }
@@ -879,13 +961,15 @@ class _$DoorImpl implements Door {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? building,
     TResult? Function()? lectureHall,
-    TResult? Function()? room,
+    TResult? Function(String roomNumber)? room,
     TResult? Function(List<String> connects)? door,
     TResult? Function(String toilet_type)? toilet,
     TResult? Function(List<int> connects_levels)? stairs,
     TResult? Function(List<int> connects_levels)? lift,
+    TResult? Function()? foodDrink,
     TResult? Function(List<String> bus_lines, List<String> tram_lines)?
         publicTransport,
+    TResult? Function(String roomNumber)? pcPool,
   }) {
     return door?.call(connects);
   }
@@ -895,13 +979,15 @@ class _$DoorImpl implements Door {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? building,
     TResult Function()? lectureHall,
-    TResult Function()? room,
+    TResult Function(String roomNumber)? room,
     TResult Function(List<String> connects)? door,
     TResult Function(String toilet_type)? toilet,
     TResult Function(List<int> connects_levels)? stairs,
     TResult Function(List<int> connects_levels)? lift,
+    TResult Function()? foodDrink,
     TResult Function(List<String> bus_lines, List<String> tram_lines)?
         publicTransport,
+    TResult Function(String roomNumber)? pcPool,
     required TResult orElse(),
   }) {
     if (door != null) {
@@ -920,7 +1006,9 @@ class _$DoorImpl implements Door {
     required TResult Function(Toilet value) toilet,
     required TResult Function(Stairs value) stairs,
     required TResult Function(Lift value) lift,
+    required TResult Function(FoodDrink value) foodDrink,
     required TResult Function(PublicTransport value) publicTransport,
+    required TResult Function(PcPool value) pcPool,
   }) {
     return door(this);
   }
@@ -935,7 +1023,9 @@ class _$DoorImpl implements Door {
     TResult? Function(Toilet value)? toilet,
     TResult? Function(Stairs value)? stairs,
     TResult? Function(Lift value)? lift,
+    TResult? Function(FoodDrink value)? foodDrink,
     TResult? Function(PublicTransport value)? publicTransport,
+    TResult? Function(PcPool value)? pcPool,
   }) {
     return door?.call(this);
   }
@@ -950,7 +1040,9 @@ class _$DoorImpl implements Door {
     TResult Function(Toilet value)? toilet,
     TResult Function(Stairs value)? stairs,
     TResult Function(Lift value)? lift,
+    TResult Function(FoodDrink value)? foodDrink,
     TResult Function(PublicTransport value)? publicTransport,
+    TResult Function(PcPool value)? pcPool,
     required TResult orElse(),
   }) {
     if (door != null) {
@@ -1036,13 +1128,15 @@ class _$ToiletImpl implements Toilet {
   TResult when<TResult extends Object?>({
     required TResult Function() building,
     required TResult Function() lectureHall,
-    required TResult Function() room,
+    required TResult Function(String roomNumber) room,
     required TResult Function(List<String> connects) door,
     required TResult Function(String toilet_type) toilet,
     required TResult Function(List<int> connects_levels) stairs,
     required TResult Function(List<int> connects_levels) lift,
+    required TResult Function() foodDrink,
     required TResult Function(List<String> bus_lines, List<String> tram_lines)
         publicTransport,
+    required TResult Function(String roomNumber) pcPool,
   }) {
     return toilet(toilet_type);
   }
@@ -1052,13 +1146,15 @@ class _$ToiletImpl implements Toilet {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? building,
     TResult? Function()? lectureHall,
-    TResult? Function()? room,
+    TResult? Function(String roomNumber)? room,
     TResult? Function(List<String> connects)? door,
     TResult? Function(String toilet_type)? toilet,
     TResult? Function(List<int> connects_levels)? stairs,
     TResult? Function(List<int> connects_levels)? lift,
+    TResult? Function()? foodDrink,
     TResult? Function(List<String> bus_lines, List<String> tram_lines)?
         publicTransport,
+    TResult? Function(String roomNumber)? pcPool,
   }) {
     return toilet?.call(toilet_type);
   }
@@ -1068,13 +1164,15 @@ class _$ToiletImpl implements Toilet {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? building,
     TResult Function()? lectureHall,
-    TResult Function()? room,
+    TResult Function(String roomNumber)? room,
     TResult Function(List<String> connects)? door,
     TResult Function(String toilet_type)? toilet,
     TResult Function(List<int> connects_levels)? stairs,
     TResult Function(List<int> connects_levels)? lift,
+    TResult Function()? foodDrink,
     TResult Function(List<String> bus_lines, List<String> tram_lines)?
         publicTransport,
+    TResult Function(String roomNumber)? pcPool,
     required TResult orElse(),
   }) {
     if (toilet != null) {
@@ -1093,7 +1191,9 @@ class _$ToiletImpl implements Toilet {
     required TResult Function(Toilet value) toilet,
     required TResult Function(Stairs value) stairs,
     required TResult Function(Lift value) lift,
+    required TResult Function(FoodDrink value) foodDrink,
     required TResult Function(PublicTransport value) publicTransport,
+    required TResult Function(PcPool value) pcPool,
   }) {
     return toilet(this);
   }
@@ -1108,7 +1208,9 @@ class _$ToiletImpl implements Toilet {
     TResult? Function(Toilet value)? toilet,
     TResult? Function(Stairs value)? stairs,
     TResult? Function(Lift value)? lift,
+    TResult? Function(FoodDrink value)? foodDrink,
     TResult? Function(PublicTransport value)? publicTransport,
+    TResult? Function(PcPool value)? pcPool,
   }) {
     return toilet?.call(this);
   }
@@ -1123,7 +1225,9 @@ class _$ToiletImpl implements Toilet {
     TResult Function(Toilet value)? toilet,
     TResult Function(Stairs value)? stairs,
     TResult Function(Lift value)? lift,
+    TResult Function(FoodDrink value)? foodDrink,
     TResult Function(PublicTransport value)? publicTransport,
+    TResult Function(PcPool value)? pcPool,
     required TResult orElse(),
   }) {
     if (toilet != null) {
@@ -1216,13 +1320,15 @@ class _$StairsImpl implements Stairs {
   TResult when<TResult extends Object?>({
     required TResult Function() building,
     required TResult Function() lectureHall,
-    required TResult Function() room,
+    required TResult Function(String roomNumber) room,
     required TResult Function(List<String> connects) door,
     required TResult Function(String toilet_type) toilet,
     required TResult Function(List<int> connects_levels) stairs,
     required TResult Function(List<int> connects_levels) lift,
+    required TResult Function() foodDrink,
     required TResult Function(List<String> bus_lines, List<String> tram_lines)
         publicTransport,
+    required TResult Function(String roomNumber) pcPool,
   }) {
     return stairs(connects_levels);
   }
@@ -1232,13 +1338,15 @@ class _$StairsImpl implements Stairs {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? building,
     TResult? Function()? lectureHall,
-    TResult? Function()? room,
+    TResult? Function(String roomNumber)? room,
     TResult? Function(List<String> connects)? door,
     TResult? Function(String toilet_type)? toilet,
     TResult? Function(List<int> connects_levels)? stairs,
     TResult? Function(List<int> connects_levels)? lift,
+    TResult? Function()? foodDrink,
     TResult? Function(List<String> bus_lines, List<String> tram_lines)?
         publicTransport,
+    TResult? Function(String roomNumber)? pcPool,
   }) {
     return stairs?.call(connects_levels);
   }
@@ -1248,13 +1356,15 @@ class _$StairsImpl implements Stairs {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? building,
     TResult Function()? lectureHall,
-    TResult Function()? room,
+    TResult Function(String roomNumber)? room,
     TResult Function(List<String> connects)? door,
     TResult Function(String toilet_type)? toilet,
     TResult Function(List<int> connects_levels)? stairs,
     TResult Function(List<int> connects_levels)? lift,
+    TResult Function()? foodDrink,
     TResult Function(List<String> bus_lines, List<String> tram_lines)?
         publicTransport,
+    TResult Function(String roomNumber)? pcPool,
     required TResult orElse(),
   }) {
     if (stairs != null) {
@@ -1273,7 +1383,9 @@ class _$StairsImpl implements Stairs {
     required TResult Function(Toilet value) toilet,
     required TResult Function(Stairs value) stairs,
     required TResult Function(Lift value) lift,
+    required TResult Function(FoodDrink value) foodDrink,
     required TResult Function(PublicTransport value) publicTransport,
+    required TResult Function(PcPool value) pcPool,
   }) {
     return stairs(this);
   }
@@ -1288,7 +1400,9 @@ class _$StairsImpl implements Stairs {
     TResult? Function(Toilet value)? toilet,
     TResult? Function(Stairs value)? stairs,
     TResult? Function(Lift value)? lift,
+    TResult? Function(FoodDrink value)? foodDrink,
     TResult? Function(PublicTransport value)? publicTransport,
+    TResult? Function(PcPool value)? pcPool,
   }) {
     return stairs?.call(this);
   }
@@ -1303,7 +1417,9 @@ class _$StairsImpl implements Stairs {
     TResult Function(Toilet value)? toilet,
     TResult Function(Stairs value)? stairs,
     TResult Function(Lift value)? lift,
+    TResult Function(FoodDrink value)? foodDrink,
     TResult Function(PublicTransport value)? publicTransport,
+    TResult Function(PcPool value)? pcPool,
     required TResult orElse(),
   }) {
     if (stairs != null) {
@@ -1395,13 +1511,15 @@ class _$LiftImpl implements Lift {
   TResult when<TResult extends Object?>({
     required TResult Function() building,
     required TResult Function() lectureHall,
-    required TResult Function() room,
+    required TResult Function(String roomNumber) room,
     required TResult Function(List<String> connects) door,
     required TResult Function(String toilet_type) toilet,
     required TResult Function(List<int> connects_levels) stairs,
     required TResult Function(List<int> connects_levels) lift,
+    required TResult Function() foodDrink,
     required TResult Function(List<String> bus_lines, List<String> tram_lines)
         publicTransport,
+    required TResult Function(String roomNumber) pcPool,
   }) {
     return lift(connects_levels);
   }
@@ -1411,13 +1529,15 @@ class _$LiftImpl implements Lift {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? building,
     TResult? Function()? lectureHall,
-    TResult? Function()? room,
+    TResult? Function(String roomNumber)? room,
     TResult? Function(List<String> connects)? door,
     TResult? Function(String toilet_type)? toilet,
     TResult? Function(List<int> connects_levels)? stairs,
     TResult? Function(List<int> connects_levels)? lift,
+    TResult? Function()? foodDrink,
     TResult? Function(List<String> bus_lines, List<String> tram_lines)?
         publicTransport,
+    TResult? Function(String roomNumber)? pcPool,
   }) {
     return lift?.call(connects_levels);
   }
@@ -1427,13 +1547,15 @@ class _$LiftImpl implements Lift {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? building,
     TResult Function()? lectureHall,
-    TResult Function()? room,
+    TResult Function(String roomNumber)? room,
     TResult Function(List<String> connects)? door,
     TResult Function(String toilet_type)? toilet,
     TResult Function(List<int> connects_levels)? stairs,
     TResult Function(List<int> connects_levels)? lift,
+    TResult Function()? foodDrink,
     TResult Function(List<String> bus_lines, List<String> tram_lines)?
         publicTransport,
+    TResult Function(String roomNumber)? pcPool,
     required TResult orElse(),
   }) {
     if (lift != null) {
@@ -1452,7 +1574,9 @@ class _$LiftImpl implements Lift {
     required TResult Function(Toilet value) toilet,
     required TResult Function(Stairs value) stairs,
     required TResult Function(Lift value) lift,
+    required TResult Function(FoodDrink value) foodDrink,
     required TResult Function(PublicTransport value) publicTransport,
+    required TResult Function(PcPool value) pcPool,
   }) {
     return lift(this);
   }
@@ -1467,7 +1591,9 @@ class _$LiftImpl implements Lift {
     TResult? Function(Toilet value)? toilet,
     TResult? Function(Stairs value)? stairs,
     TResult? Function(Lift value)? lift,
+    TResult? Function(FoodDrink value)? foodDrink,
     TResult? Function(PublicTransport value)? publicTransport,
+    TResult? Function(PcPool value)? pcPool,
   }) {
     return lift?.call(this);
   }
@@ -1482,7 +1608,9 @@ class _$LiftImpl implements Lift {
     TResult Function(Toilet value)? toilet,
     TResult Function(Stairs value)? stairs,
     TResult Function(Lift value)? lift,
+    TResult Function(FoodDrink value)? foodDrink,
     TResult Function(PublicTransport value)? publicTransport,
+    TResult Function(PcPool value)? pcPool,
     required TResult orElse(),
   }) {
     if (lift != null) {
@@ -1499,6 +1627,159 @@ abstract class Lift implements FeatureType {
   @JsonKey(ignore: true)
   _$$LiftImplCopyWith<_$LiftImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$FoodDrinkImplCopyWith<$Res> {
+  factory _$$FoodDrinkImplCopyWith(
+          _$FoodDrinkImpl value, $Res Function(_$FoodDrinkImpl) then) =
+      __$$FoodDrinkImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$FoodDrinkImplCopyWithImpl<$Res>
+    extends _$FeatureTypeCopyWithImpl<$Res, _$FoodDrinkImpl>
+    implements _$$FoodDrinkImplCopyWith<$Res> {
+  __$$FoodDrinkImplCopyWithImpl(
+      _$FoodDrinkImpl _value, $Res Function(_$FoodDrinkImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$FoodDrinkImpl implements FoodDrink {
+  const _$FoodDrinkImpl();
+
+  @override
+  String toString() {
+    return 'FeatureType.foodDrink()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$FoodDrinkImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() building,
+    required TResult Function() lectureHall,
+    required TResult Function(String roomNumber) room,
+    required TResult Function(List<String> connects) door,
+    required TResult Function(String toilet_type) toilet,
+    required TResult Function(List<int> connects_levels) stairs,
+    required TResult Function(List<int> connects_levels) lift,
+    required TResult Function() foodDrink,
+    required TResult Function(List<String> bus_lines, List<String> tram_lines)
+        publicTransport,
+    required TResult Function(String roomNumber) pcPool,
+  }) {
+    return foodDrink();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? building,
+    TResult? Function()? lectureHall,
+    TResult? Function(String roomNumber)? room,
+    TResult? Function(List<String> connects)? door,
+    TResult? Function(String toilet_type)? toilet,
+    TResult? Function(List<int> connects_levels)? stairs,
+    TResult? Function(List<int> connects_levels)? lift,
+    TResult? Function()? foodDrink,
+    TResult? Function(List<String> bus_lines, List<String> tram_lines)?
+        publicTransport,
+    TResult? Function(String roomNumber)? pcPool,
+  }) {
+    return foodDrink?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? building,
+    TResult Function()? lectureHall,
+    TResult Function(String roomNumber)? room,
+    TResult Function(List<String> connects)? door,
+    TResult Function(String toilet_type)? toilet,
+    TResult Function(List<int> connects_levels)? stairs,
+    TResult Function(List<int> connects_levels)? lift,
+    TResult Function()? foodDrink,
+    TResult Function(List<String> bus_lines, List<String> tram_lines)?
+        publicTransport,
+    TResult Function(String roomNumber)? pcPool,
+    required TResult orElse(),
+  }) {
+    if (foodDrink != null) {
+      return foodDrink();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Building value) building,
+    required TResult Function(LectureHall value) lectureHall,
+    required TResult Function(Room value) room,
+    required TResult Function(Door value) door,
+    required TResult Function(Toilet value) toilet,
+    required TResult Function(Stairs value) stairs,
+    required TResult Function(Lift value) lift,
+    required TResult Function(FoodDrink value) foodDrink,
+    required TResult Function(PublicTransport value) publicTransport,
+    required TResult Function(PcPool value) pcPool,
+  }) {
+    return foodDrink(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Building value)? building,
+    TResult? Function(LectureHall value)? lectureHall,
+    TResult? Function(Room value)? room,
+    TResult? Function(Door value)? door,
+    TResult? Function(Toilet value)? toilet,
+    TResult? Function(Stairs value)? stairs,
+    TResult? Function(Lift value)? lift,
+    TResult? Function(FoodDrink value)? foodDrink,
+    TResult? Function(PublicTransport value)? publicTransport,
+    TResult? Function(PcPool value)? pcPool,
+  }) {
+    return foodDrink?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Building value)? building,
+    TResult Function(LectureHall value)? lectureHall,
+    TResult Function(Room value)? room,
+    TResult Function(Door value)? door,
+    TResult Function(Toilet value)? toilet,
+    TResult Function(Stairs value)? stairs,
+    TResult Function(Lift value)? lift,
+    TResult Function(FoodDrink value)? foodDrink,
+    TResult Function(PublicTransport value)? publicTransport,
+    TResult Function(PcPool value)? pcPool,
+    required TResult orElse(),
+  }) {
+    if (foodDrink != null) {
+      return foodDrink(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class FoodDrink implements FeatureType {
+  const factory FoodDrink() = _$FoodDrinkImpl;
 }
 
 /// @nodoc
@@ -1595,13 +1876,15 @@ class _$PublicTransportImpl implements PublicTransport {
   TResult when<TResult extends Object?>({
     required TResult Function() building,
     required TResult Function() lectureHall,
-    required TResult Function() room,
+    required TResult Function(String roomNumber) room,
     required TResult Function(List<String> connects) door,
     required TResult Function(String toilet_type) toilet,
     required TResult Function(List<int> connects_levels) stairs,
     required TResult Function(List<int> connects_levels) lift,
+    required TResult Function() foodDrink,
     required TResult Function(List<String> bus_lines, List<String> tram_lines)
         publicTransport,
+    required TResult Function(String roomNumber) pcPool,
   }) {
     return publicTransport(bus_lines, tram_lines);
   }
@@ -1611,13 +1894,15 @@ class _$PublicTransportImpl implements PublicTransport {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? building,
     TResult? Function()? lectureHall,
-    TResult? Function()? room,
+    TResult? Function(String roomNumber)? room,
     TResult? Function(List<String> connects)? door,
     TResult? Function(String toilet_type)? toilet,
     TResult? Function(List<int> connects_levels)? stairs,
     TResult? Function(List<int> connects_levels)? lift,
+    TResult? Function()? foodDrink,
     TResult? Function(List<String> bus_lines, List<String> tram_lines)?
         publicTransport,
+    TResult? Function(String roomNumber)? pcPool,
   }) {
     return publicTransport?.call(bus_lines, tram_lines);
   }
@@ -1627,13 +1912,15 @@ class _$PublicTransportImpl implements PublicTransport {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? building,
     TResult Function()? lectureHall,
-    TResult Function()? room,
+    TResult Function(String roomNumber)? room,
     TResult Function(List<String> connects)? door,
     TResult Function(String toilet_type)? toilet,
     TResult Function(List<int> connects_levels)? stairs,
     TResult Function(List<int> connects_levels)? lift,
+    TResult Function()? foodDrink,
     TResult Function(List<String> bus_lines, List<String> tram_lines)?
         publicTransport,
+    TResult Function(String roomNumber)? pcPool,
     required TResult orElse(),
   }) {
     if (publicTransport != null) {
@@ -1652,7 +1939,9 @@ class _$PublicTransportImpl implements PublicTransport {
     required TResult Function(Toilet value) toilet,
     required TResult Function(Stairs value) stairs,
     required TResult Function(Lift value) lift,
+    required TResult Function(FoodDrink value) foodDrink,
     required TResult Function(PublicTransport value) publicTransport,
+    required TResult Function(PcPool value) pcPool,
   }) {
     return publicTransport(this);
   }
@@ -1667,7 +1956,9 @@ class _$PublicTransportImpl implements PublicTransport {
     TResult? Function(Toilet value)? toilet,
     TResult? Function(Stairs value)? stairs,
     TResult? Function(Lift value)? lift,
+    TResult? Function(FoodDrink value)? foodDrink,
     TResult? Function(PublicTransport value)? publicTransport,
+    TResult? Function(PcPool value)? pcPool,
   }) {
     return publicTransport?.call(this);
   }
@@ -1682,7 +1973,9 @@ class _$PublicTransportImpl implements PublicTransport {
     TResult Function(Toilet value)? toilet,
     TResult Function(Stairs value)? stairs,
     TResult Function(Lift value)? lift,
+    TResult Function(FoodDrink value)? foodDrink,
     TResult Function(PublicTransport value)? publicTransport,
+    TResult Function(PcPool value)? pcPool,
     required TResult orElse(),
   }) {
     if (publicTransport != null) {
@@ -1701,5 +1994,190 @@ abstract class PublicTransport implements FeatureType {
   List<String> get tram_lines;
   @JsonKey(ignore: true)
   _$$PublicTransportImplCopyWith<_$PublicTransportImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$PcPoolImplCopyWith<$Res> {
+  factory _$$PcPoolImplCopyWith(
+          _$PcPoolImpl value, $Res Function(_$PcPoolImpl) then) =
+      __$$PcPoolImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String roomNumber});
+}
+
+/// @nodoc
+class __$$PcPoolImplCopyWithImpl<$Res>
+    extends _$FeatureTypeCopyWithImpl<$Res, _$PcPoolImpl>
+    implements _$$PcPoolImplCopyWith<$Res> {
+  __$$PcPoolImplCopyWithImpl(
+      _$PcPoolImpl _value, $Res Function(_$PcPoolImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? roomNumber = null,
+  }) {
+    return _then(_$PcPoolImpl(
+      null == roomNumber
+          ? _value.roomNumber
+          : roomNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PcPoolImpl implements PcPool {
+  const _$PcPoolImpl(this.roomNumber);
+
+  @override
+  final String roomNumber;
+
+  @override
+  String toString() {
+    return 'FeatureType.pcPool(roomNumber: $roomNumber)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PcPoolImpl &&
+            (identical(other.roomNumber, roomNumber) ||
+                other.roomNumber == roomNumber));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, roomNumber);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PcPoolImplCopyWith<_$PcPoolImpl> get copyWith =>
+      __$$PcPoolImplCopyWithImpl<_$PcPoolImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() building,
+    required TResult Function() lectureHall,
+    required TResult Function(String roomNumber) room,
+    required TResult Function(List<String> connects) door,
+    required TResult Function(String toilet_type) toilet,
+    required TResult Function(List<int> connects_levels) stairs,
+    required TResult Function(List<int> connects_levels) lift,
+    required TResult Function() foodDrink,
+    required TResult Function(List<String> bus_lines, List<String> tram_lines)
+        publicTransport,
+    required TResult Function(String roomNumber) pcPool,
+  }) {
+    return pcPool(roomNumber);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? building,
+    TResult? Function()? lectureHall,
+    TResult? Function(String roomNumber)? room,
+    TResult? Function(List<String> connects)? door,
+    TResult? Function(String toilet_type)? toilet,
+    TResult? Function(List<int> connects_levels)? stairs,
+    TResult? Function(List<int> connects_levels)? lift,
+    TResult? Function()? foodDrink,
+    TResult? Function(List<String> bus_lines, List<String> tram_lines)?
+        publicTransport,
+    TResult? Function(String roomNumber)? pcPool,
+  }) {
+    return pcPool?.call(roomNumber);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? building,
+    TResult Function()? lectureHall,
+    TResult Function(String roomNumber)? room,
+    TResult Function(List<String> connects)? door,
+    TResult Function(String toilet_type)? toilet,
+    TResult Function(List<int> connects_levels)? stairs,
+    TResult Function(List<int> connects_levels)? lift,
+    TResult Function()? foodDrink,
+    TResult Function(List<String> bus_lines, List<String> tram_lines)?
+        publicTransport,
+    TResult Function(String roomNumber)? pcPool,
+    required TResult orElse(),
+  }) {
+    if (pcPool != null) {
+      return pcPool(roomNumber);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Building value) building,
+    required TResult Function(LectureHall value) lectureHall,
+    required TResult Function(Room value) room,
+    required TResult Function(Door value) door,
+    required TResult Function(Toilet value) toilet,
+    required TResult Function(Stairs value) stairs,
+    required TResult Function(Lift value) lift,
+    required TResult Function(FoodDrink value) foodDrink,
+    required TResult Function(PublicTransport value) publicTransport,
+    required TResult Function(PcPool value) pcPool,
+  }) {
+    return pcPool(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Building value)? building,
+    TResult? Function(LectureHall value)? lectureHall,
+    TResult? Function(Room value)? room,
+    TResult? Function(Door value)? door,
+    TResult? Function(Toilet value)? toilet,
+    TResult? Function(Stairs value)? stairs,
+    TResult? Function(Lift value)? lift,
+    TResult? Function(FoodDrink value)? foodDrink,
+    TResult? Function(PublicTransport value)? publicTransport,
+    TResult? Function(PcPool value)? pcPool,
+  }) {
+    return pcPool?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Building value)? building,
+    TResult Function(LectureHall value)? lectureHall,
+    TResult Function(Room value)? room,
+    TResult Function(Door value)? door,
+    TResult Function(Toilet value)? toilet,
+    TResult Function(Stairs value)? stairs,
+    TResult Function(Lift value)? lift,
+    TResult Function(FoodDrink value)? foodDrink,
+    TResult Function(PublicTransport value)? publicTransport,
+    TResult Function(PcPool value)? pcPool,
+    required TResult orElse(),
+  }) {
+    if (pcPool != null) {
+      return pcPool(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PcPool implements FeatureType {
+  const factory PcPool(final String roomNumber) = _$PcPoolImpl;
+
+  String get roomNumber;
+  @JsonKey(ignore: true)
+  _$$PcPoolImplCopyWith<_$PcPoolImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

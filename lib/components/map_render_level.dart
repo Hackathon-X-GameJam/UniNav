@@ -14,6 +14,7 @@ List<Widget> renderLevel(
   int level,
 ) {
   return <Widget>[
+    // Lecture Halls
     LevelLayer(
       filter: (feature) =>
           feature.level == level && feature.type is LectureHall,
@@ -43,19 +44,39 @@ List<Widget> renderLevel(
         alignment: Alignment.center,
       ),
     ),
+
+    // Rooms (Seminar Rooms)
     LevelLayer(
-      filter: (feature) => feature.level == level && feature.type is Room,
-      polyConstructor: (feature) => feature
-          .getPolygon(
-            constructor: (pts) => Polygon(
-              points: pts,
-              color: Colors.green.withOpacity(1.2),
-              borderColor: Colors.green,
-              borderStrokeWidth: 2,
-            ),
-          )
-          .unwrap(),
-    ),
+        filter: (feature) => feature.level == level && feature.type is Room,
+        polyConstructor: (feature) => feature
+            .getPolygon(
+              constructor: (pts) => Polygon(
+                points: pts,
+                color: Colors.green.withOpacity(1.2),
+                borderColor: Colors.green,
+                borderStrokeWidth: 2,
+              ),
+            )
+            .unwrap(),
+        markerConstructor: (feature) => Marker(
+              width: 100,
+              height: 70,
+              point: feature.getPoint().unwrap(),
+              child: Column(
+                children: [
+                  const Icon(
+                    Icons.co_present_rounded,
+                    color: Colors.amber,
+                  ),
+                  Text(
+                    (feature.type as Room).roomNumber,
+                    style: const TextStyle(color: Colors.black),
+                  ),
+                ],
+              ),
+              alignment: Alignment.center,
+            )),
+    // Doors Layer
     LevelLayer(
       filter: (feature) => feature.level == level && feature.type is Door,
       markerConstructor: (feature) {
@@ -72,6 +93,72 @@ List<Widget> renderLevel(
         );
       },
     ),
+
+    // Food and Drink Layer
+    LevelLayer(
+      filter: (feature) => feature.level == level && feature.type is FoodDrink,
+      markerConstructor: (feature) {
+        final point = feature.getPoint().unwrap();
+        return Marker(
+          width: 21,
+          height: 21,
+          point: point,
+          child: const Icon(
+            Icons.restaurant,
+            color: Colors.deepOrange,
+          ),
+          alignment: Alignment.center,
+        );
+      },
+      polyConstructor: (feature) => feature
+          .getPolygon(
+            constructor: (pts) => Polygon(
+              points: pts,
+              color: Colors.deepOrange.withOpacity(0.2),
+              borderColor: Colors.deepOrange,
+              borderStrokeWidth: 2,
+            ),
+          )
+          .unwrap(),
+    ),
+
+    // PC Pools layer
+    LevelLayer(
+      filter: (feature) => feature.level == level && feature.type is PcPool,
+      markerConstructor: (feature) {
+        final point = feature.getPoint().unwrap();
+        return Marker(
+          width: 100,
+          height: 70,
+          point: point,
+          child: Column(
+            children: [
+              const Icon(
+                Icons.computer,
+                color: Colors.cyan,
+              ),
+              Text(
+                (feature.type as PcPool).roomNumber,
+                style: const TextStyle(color: Colors.black),
+              ),
+            ],
+          ),
+          alignment: Alignment.center,
+        );
+      },
+      polyConstructor: (feature) => feature
+          .getPolygon(
+            constructor: (pts) => Polygon(
+              points: pts,
+              color: Colors.cyan.withOpacity(0.2),
+              borderColor: Colors.cyan,
+              borderStrokeWidth: 2,
+            ),
+          )
+          .unwrap(),
+    ),
+
+    // Toilets Layer
     LevelLayer(
       filter: (feature) => feature.level == level && feature.type is Toilet,
       markerConstructor: (feature) {
@@ -84,12 +171,14 @@ List<Widget> renderLevel(
           point: point,
           child: Icon(
             findToiletIcon(type),
-            color: Colors.purple,
+            color: Colors.blue.shade700,
           ),
           alignment: Alignment.center,
         );
       },
     ),
+
+    // Stairs layer
     LevelLayer(
       filter: (feature) =>
           feature.type is Stairs &&
@@ -108,6 +197,8 @@ List<Widget> renderLevel(
         );
       },
     ),
+
+    // Lift layer
     LevelLayer(
       filter: (feature) =>
           feature.type is Lift &&

@@ -384,7 +384,7 @@
       "properties": {
         "name": "O25",
         "layer": "buildings",
-        "description": "connections: [o26, mensa]"
+        "description": "connections: [o26, mensa, outside]"
       },
       "geometry": {
         "type": "Polygon",
@@ -2432,6 +2432,38 @@
         ]
       },
       "id": "gzMDI"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "door",
+        "description": "type: door\nlevel: 2\nconnects: [o25, outside]",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955606,
+          48.422081
+        ]
+      },
+      "id": "I5NTI"
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "door",
+        "description": "type: door\nlevel: 2\nconnects: [o25, mensa]",
+        "layer": "layer_2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.955426,
+          48.422062
+        ]
+      },
+      "id": "c1NDY"
     }
   ]
 }

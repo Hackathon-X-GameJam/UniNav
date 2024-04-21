@@ -1,14 +1,17 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:anyhow/anyhow.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:geojson_vi/geojson_vi.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:uninav/components/feature_bottom_sheet.dart';
 import 'package:uninav/data/geo/model.dart';
 import 'package:uninav/data/geo/parser.dart';
 import 'package:uninav/util/geojson_util.dart';
+import 'package:uninav/util/geolocator.dart';
 import 'package:uninav/util/geomath.dart';
 
 class MyMapController extends GetxController {
@@ -17,6 +20,10 @@ class MyMapController extends GetxController {
   final RxList<Feature> features = <Feature>[].obs;
   final currentLevel = 1.obs;
   final levels = <int>[1].obs;
+  final Rx<Position?> position = null.obs;
+
+  bool _locationEnsured = false;
+
   @override
   onInit() async {
     print("init");
@@ -98,6 +105,8 @@ class MyMapController extends GetxController {
             feature.geometry, feature.id);
         if (parsed case Ok(:final ok)) {
           featuresList.add(ok);
+        } else {
+          print('Error parsing feature: $parsed');
         }
       }
 
@@ -136,5 +145,47 @@ class MyMapController extends GetxController {
       print("Error moving map controller: $e");
     }
     showFeatureBottomSheet(feature, closestFeatures);
+  }
+
+  Future<Result<Position>> getCurrentPosition() async {
+    if (!_locationEnsured) {
+      final ensureRes = await ensureLocationPermission();
+      if (ensureRes is Err) {
+        // TODO: check that it works
+        return ensureRes as Err<Position>;
+      }
+    }
+    _locationEnsured = true;
+    try {
+      final pos = await Geolocator.getCurrentPosition(
+        // desiredAccuracy: LocationAccuracy.high,
+        timeLimit: Duration(minutes: 1),
+      );
+      position.value = pos;
+      return Ok(pos);
+    } on TimeoutException catch (e) {
+      return bail("Timeout while waiting for location lock: $e");
+    }
+  }
+
+  Future<Result<()>> subscribePosition() async {
+    if (!_locationEnsured) {
+      final ensureRes = await ensureLocationPermission();
+      if (ensureRes is Err) {
+        // TODO: check that it works
+        return ensureRes;
+      }
+    }
+    _locationEnsured = true;
+    Geolocator.getPositionStream(
+      locationSettings: const LocationSettings(
+        accuracy: LocationAccuracy.high,
+        distanceFilter: 100,
+        //timeLimit: Duration(minutes: 10)
+      ),
+    ).listen((pos) {
+      position.value = pos;
+    });
+    return const Ok(());
   }
 }
