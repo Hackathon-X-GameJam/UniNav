@@ -34,7 +34,9 @@ Result<Feature> parseFeature(
   }
 
   yaml = yaml as YamlMap? ?? {};
-  final description = yaml['desription'] as String?;
+  final description = yaml['description'] as String?;
+
+  // if (description != null) print("================ $description");
 
   final building = yaml['building'] as String?;
 

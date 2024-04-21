@@ -127,27 +127,55 @@ class MapPage extends StatelessWidget {
                   ),
                   padding:
                       const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  child: Obx(
-                    () => DropdownButton<int>(
-                      value: Get.find<MyMapController>().currentLevel.value,
-                      style: TextStyle(
-                          color: Theme.of(context).colorScheme.onSurface),
-                      dropdownColor: Theme.of(context).colorScheme.surface,
-                      onChanged: (int? newValue) {
-                        if (newValue != null) {
-                          Get.find<MyMapController>().setLevel(newValue);
-                        }
-                        // Handle dropdown value change
-                      },
-                      items: Get.find<MyMapController>()
-                          .levels
-                          .map<DropdownMenuItem<int>>((int value) {
-                        return DropdownMenuItem<int>(
-                          value: value,
-                          child: Text("Level $value"),
-                        );
-                      }).toList(),
-                    ),
+                  child: Row(
+                    children: [
+                      Obx(
+                        () => DropdownButton<int>(
+                          value: Get.find<MyMapController>().currentLevel.value,
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.onSurface),
+                          dropdownColor: Theme.of(context).colorScheme.surface,
+                          onChanged: (int? newValue) {
+                            if (newValue != null) {
+                              Get.find<MyMapController>().setLevel(newValue);
+                            }
+                            // Handle dropdown value change
+                          },
+                          items: Get.find<MyMapController>()
+                              .levels
+                              .map<DropdownMenuItem<int>>((int value) {
+                            return DropdownMenuItem<int>(
+                              value: value,
+                              child: Text("Level $value"),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.arrow_upward),
+                        onPressed: () {
+                          int currentLevel =
+                              Get.find<MyMapController>().currentLevel.value;
+                          if (currentLevel <
+                              Get.find<MyMapController>().levels.last) {
+                            Get.find<MyMapController>()
+                                .setLevel(currentLevel + 1);
+                          }
+                        },
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.arrow_downward),
+                        onPressed: () {
+                          int currentLevel =
+                              Get.find<MyMapController>().currentLevel.value;
+                          if (currentLevel >
+                              Get.find<MyMapController>().levels.first) {
+                            Get.find<MyMapController>()
+                                .setLevel(currentLevel - 1);
+                          }
+                        },
+                      ),
+                    ],
                   ),
                 )),
           ],

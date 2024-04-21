@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:uninav/controllers/isar_controller.dart';
 import 'package:uninav/controllers/map_controller.dart';
 import 'package:uninav/map.dart';
 import 'package:uninav/settings.dart';
 
-void main() {
+// TODO: maybe make not async?
+void main() async {
   Get.put(MyMapController());
+  await Get.putAsync(() async {
+    final controller = IsarController();
+    await controller.initializeIsar();
+    return controller;
+  });
   runApp(const MyApp());
 }
 

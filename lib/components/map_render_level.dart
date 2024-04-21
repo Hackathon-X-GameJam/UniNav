@@ -8,6 +8,7 @@ import 'package:uninav/controllers/map_controller.dart';
 import 'package:uninav/data/geo/model.dart';
 import 'package:uninav/map.dart';
 import 'package:uninav/util/geomath.dart';
+import 'package:uninav/util/util.dart';
 
 List<Widget> renderLevel(int level, {LayerHitNotifier? hitNotifier}) {
   return <Widget>[
@@ -77,24 +78,6 @@ List<Widget> renderLevel(int level, {LayerHitNotifier? hitNotifier}) {
       filter: (feature) => feature.level == level && feature.type is Toilet,
       markerConstructor: (feature) {
         final type = (feature.type as Toilet).toilet_type;
-        IconData icon;
-        switch (type.toLowerCase()) {
-          case 'male':
-            icon = Icons.male;
-            break;
-          case 'female':
-            icon = Icons.female;
-            break;
-          case 'handicap':
-            icon = Icons.wheelchair_pickup;
-            break;
-          default:
-            print("WARN: Toilet didn't have recognizable type! "
-                "(Level ${feature.level}, Name ${feature.name}, "
-                "Location: ${feature.getPoint().unwrap()})");
-            icon = Icons.wc;
-            break;
-        }
 
         final point = feature.getPoint().unwrap();
         return Marker(
@@ -102,7 +85,7 @@ List<Widget> renderLevel(int level, {LayerHitNotifier? hitNotifier}) {
           height: 21,
           point: point,
           child: Icon(
-            icon,
+            findToiletIcon(type),
             color: Colors.purple,
           ),
           alignment: Alignment.center,

@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:uninav/data/geo/model.dart';
 
 String formatDuration(Duration duration) {
@@ -63,5 +65,19 @@ String formatDistance(int distanceInMeters) {
       // If there are remaining meters, display both kilometers and meters.
       return '${kilometers}km ${meters}m';
     }
+  }
+}
+
+IconData findToiletIcon(String type) {
+  switch (type.toLowerCase()) {
+    case 'male':
+      return Icons.male;
+    case 'female':
+      return Icons.female;
+    case 'handicap':
+      return Icons.accessible;
+    default:
+      print("WARN: Toilet didn't have recognizable type! Type was '$type'");
+      return Icons.wc;
   }
 }

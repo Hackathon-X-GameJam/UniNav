@@ -18,7 +18,9 @@ Future<void> showFeatureBottomSheet(
     Theme(
       data: ThemeData.light(),
       child: Container(
-        height: 300,
+        constraints: const BoxConstraints(
+          minHeight: 300,
+        ),
         width: Get.mediaQuery.size.width,
         decoration: const BoxDecoration(
           color: Colors.black,
@@ -26,7 +28,7 @@ Future<void> showFeatureBottomSheet(
               topLeft: Radius.circular(30), topRight: Radius.circular(30)),
         ),
         padding: const EdgeInsets.all(20),
-        child: Column(children: [
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
           Center(
             child: Container(
               width: 50,
@@ -64,6 +66,10 @@ Future<void> showFeatureBottomSheet(
                   .toList(),
             ),
             const SizedBox(height: 14),
+          ],
+          if (feature.description != null) ...[
+            Text(feature.description!),
+            const SizedBox(height: 10),
           ],
           ..._buildFeatureContent(feature),
         ]),
@@ -113,17 +119,89 @@ List<Widget> _buildDoorContent(Feature feature, List<String> connects) {
 
 /// Builds the content for the Toilet feature type.
 List<Widget> _buildToiletContent(Feature feature, String toiletType) {
-  return [Text('Toilet: ${feature.name}\nType: $toiletType')];
+  return [
+    Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Icon(
+          Icons.wc,
+          size: 60,
+          color: Colors.white,
+        ),
+        Icon(
+          findToiletIcon(toiletType),
+          size: 60,
+          color: Colors.white,
+        )
+      ],
+    )
+  ];
 }
 
 /// Builds the content for the Stairs feature type.
 List<Widget> _buildStairsContent(Feature feature, List<int> connectsLevels) {
-  return [Text('Stairs: ${feature.name}\nConnects Levels: $connectsLevels')];
+  return [
+    Text(
+      feature.name,
+      style: const TextStyle(fontSize: 18),
+    ),
+    const SizedBox(height: 10),
+    if (connectsLevels.isNotEmpty) ...[
+      const Align(
+        alignment: Alignment.centerLeft,
+        child: Padding(
+          padding: EdgeInsets.only(right: 4),
+          child: Text(
+            'Connects Levels:',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+      Align(
+        alignment: Alignment.centerLeft,
+        child: Wrap(
+          spacing: 8,
+          runSpacing: 4,
+          children: connectsLevels.map((level) {
+            return ColorfulChip(label: level.toString());
+          }).toList(),
+        ),
+      ),
+    ],
+  ];
 }
 
 /// Builds the content for the Lift feature type.
 List<Widget> _buildLiftContent(Feature feature, List<int> connectsLevels) {
-  return [Text('Lift: ${feature.name}\nConnects Levels: $connectsLevels')];
+  return [
+    Text(
+      feature.name,
+      style: const TextStyle(fontSize: 18),
+    ),
+    const SizedBox(height: 10),
+    if (connectsLevels.isNotEmpty) ...[
+      const Align(
+        alignment: Alignment.centerLeft,
+        child: Padding(
+          padding: EdgeInsets.only(right: 4),
+          child: Text(
+            'Connects Levels:',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
+      Align(
+        alignment: Alignment.centerLeft,
+        child: Wrap(
+          spacing: 8,
+          runSpacing: 4,
+          children: connectsLevels.map((level) {
+            return ColorfulChip(label: level.toString());
+          }).toList(),
+        ),
+      ),
+    ],
+  ];
 }
 
 /// Builds the content for the PublicTransport feature type.
