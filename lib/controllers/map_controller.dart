@@ -41,6 +41,7 @@ class MyMapController extends GetxController {
     }
     newLevels.sort();
     levels.value = newLevels;
+    update();
   }
 
   Result<void> setLevel(int level) {
@@ -50,6 +51,7 @@ class MyMapController extends GetxController {
     }
 
     currentLevel.value = level;
+    update();
     return const Ok(());
   }
 
@@ -111,6 +113,7 @@ class MyMapController extends GetxController {
       }
 
       features.value = featuresList;
+      update();
     } catch (e) {
       print('Error parsing GeoJSON: $e');
     }

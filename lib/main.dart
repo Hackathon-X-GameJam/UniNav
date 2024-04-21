@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:uninav/controllers/map_controller.dart';
+import 'package:uninav/controllers/navigation_controller.dart';
 import 'package:uninav/controllers/shared_prefs_controller.dart';
 import 'package:uninav/map.dart';
 import 'package:uninav/settings.dart';
@@ -12,6 +13,8 @@ void main() {
   rootBundle
       .loadString('assets/geo/uulm_beta.geojson')
       .then((value) => Get.find<MyMapController>().loadGeoJson(value));
+
+  Get.put(NavigationController());
 
   Get.putAsync(() async {
     final controller = SharedPrefsController();
@@ -43,7 +46,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/map',
       getPages: [
-        GetPage(name: '/map', page: () => const MapPage()),
+        GetPage(name: '/map', page: () => MapPage()),
         GetPage(name: '/settings', page: () => const SettingsPage()),
       ],
     );

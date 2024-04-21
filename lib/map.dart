@@ -6,18 +6,45 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_location_marker/flutter_map_location_marker.dart';
 import 'package:get/get.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:rust_core/iter.dart';
 import 'package:rust_core/slice.dart';
+import 'package:uninav/components/EventLog.dart';
 import 'package:uninav/components/drawer.dart';
 import 'package:uninav/components/hamburger_menu.dart';
 import 'package:uninav/components/map_render_level.dart';
+import 'package:uninav/components/render_route.dart';
 import 'package:uninav/controllers/map_controller.dart';
+import 'package:uninav/controllers/navigation_controller.dart';
 import 'package:uninav/data/geo/model.dart';
+import 'package:uninav/nav/graph.dart';
 import 'package:uninav/util/geojson_util.dart';
 import 'package:uninav/util/geomath.dart';
+import 'package:uninav/util/util.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class MapPage extends StatelessWidget {
-  const MapPage({Key? key}) : super(key: key);
+class MapPage extends StatefulWidget {
+  @override
+  State<MapPage> createState() => _MapPageState();
+}
+
+class _MapPageState extends State<MapPage> {
+  late final Stream<LocationMarkerPosition?> _positionStream;
+  late final Stream<LocationMarkerHeading?> _headingStream;
+
+  /*
+  @override
+  void initState() {
+    super.initState();
+    const factory = LocationMarkerDataStreamFactory();
+    _positionStream =
+        factory.fromGeolocatorPositionStream().asBroadcastStream();
+    _headingStream = factory.fromCompassHeadingStream().asBroadcastStream();
+
+    _geolocatorStream =
+        factory.defaultPositionStreamSource().asBroadcastStream();
+    _compassStream = factory.defaultHeadingStreamSource().asBroadcastStream();
+  }
+  */
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +94,13 @@ class MapPage extends StatelessWidget {
                 TileLayer(
                   urlTemplate: "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                   maxZoom: 19,
+                  tileBuilder: (context, tile, child) => ColorFiltered(
+                    colorFilter: ColorFilter.mode(
+                      Colors.white.withOpacity(0.7),
+                      BlendMode.srcATop,
+                    ),
+                    child: tile,
+                  ),
                 ),
                 TranslucentPointer(
                   child: LevelLayer(
@@ -110,8 +144,26 @@ class MapPage extends StatelessWidget {
                   )),
                 ),
                 CurrentLocationLayer(),
+                NavigationPathLayer(),
               ],
             ),
+            Positioned(
+                left: 16,
+                top: 16,
+                child: Container(
+                  height: 450,
+                  width: 150,
+                  child: GetBuilder<NavigationController>(
+                    builder: (controller) {
+                      if (controller.nav.isNotEmpty) {
+                        return EventLog(
+                            events: controller.nav.map((e) => e.$1).toList());
+                      } else {
+                        return SizedBox();
+                      }
+                    },
+                  ),
+                )),
             Positioned(
                 left: 16,
                 bottom: 16,
@@ -231,9 +283,89 @@ void locationBottomSheet() {
                 Expanded(
                   flex: 2,
                   child: Container(
-                    height: 300,
-                    color: Colors.transparent,
-                  ),
+                      height: 300,
+                      color: Colors.transparent,
+                      child: Column(
+                        children: [
+                          const Text(
+                            'Level',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          GetBuilder<MyMapController>(
+                            builder: (controller) {
+                              return Wrap(
+                                spacing: 8,
+                                runSpacing: 8,
+                                children: [
+                                  for (final level in controller.levels)
+                                    GestureDetector(
+                                      onTap: () => controller.setLevel(level),
+                                      child: Chip(
+                                        label: Text("$level"),
+                                        backgroundColor:
+                                            controller.currentLevel == level
+                                                ? Colors.blue
+                                                : Colors.grey[800],
+                                      ),
+                                    ),
+                                  Obx(() {
+                                    final navController =
+                                        Get.find<NavigationController>();
+                                    String? curBuilding;
+                                    if (navController.position.value
+                                        is BuildingFloor) {
+                                      curBuilding = (navController
+                                              .position.value as BuildingFloor)
+                                          .building
+                                          .name;
+                                    }
+
+                                    final buildingList = controller.features
+                                        .where((f) => f.type is Building);
+
+                                    return Wrap(
+                                      spacing: 8,
+                                      runSpacing: 8,
+                                      children: [
+                                        for (final building in buildingList)
+                                          GestureDetector(
+                                            onTap: () {
+                                              // print(building.name);
+                                              // print(curBuilding);
+                                              // print(navController.position);
+                                              navController.updatePosition(wrap(
+                                                      building,
+                                                      controller
+                                                          .currentLevel.value,
+                                                      building.name)
+                                                  .firstOrNull);
+                                            },
+                                            child: Chip(
+                                              label: Text(building.name),
+                                              backgroundColor:
+                                                  eq(curBuilding, building.name)
+                                                      ? building.level ==
+                                                              controller
+                                                                  .currentLevel
+                                                          ? Colors.blue
+                                                          : Colors.orange
+                                                      : Colors.grey[800],
+                                            ),
+                                          ),
+                                      ],
+                                    );
+                                  })
+                                ],
+                              );
+                            },
+                          ),
+                        ],
+                      )),
                 ),
                 Expanded(
                   flex: 1,

@@ -92,6 +92,19 @@ class Feature with _$Feature {
       return bail("Feature Geometry is not a Polygon or Point");
     }
   }
+
+  String? get buildingName => type.when(
+        building: () => name,
+        lectureHall: () => building,
+        room: (_) => building,
+        door: (_) => null,
+        toilet: (_) => building,
+        stairs: (_) => building,
+        lift: (_) => building,
+        foodDrink: () => building,
+        publicTransport: (_, __) => null,
+        pcPool: (_) => building,
+      );
 }
 
 @freezed

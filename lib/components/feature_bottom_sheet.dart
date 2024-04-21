@@ -3,7 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:uninav/components/colorful_chips.dart';
 import 'package:uninav/controllers/map_controller.dart';
+import 'package:uninav/controllers/navigation_controller.dart';
 import 'package:uninav/data/geo/model.dart';
+import 'package:uninav/nav/graph.dart';
 import 'package:uninav/util/util.dart';
 
 final _colorfulBoxDeco = BoxDecoration(
@@ -90,7 +92,39 @@ Future<void> showFeatureBottomSheet(
                     ),
                   ],
                 ),
-                onPressed: () => {},
+                onPressed: () {
+                  print("trying to start navigation...");
+                  final navController = Get.find<NavigationController>();
+                  final mapController = Get.find<MyMapController>();
+
+                  // make feature into graphFeature
+                  final wrapped = wrap(
+                          feature,
+                          mapController.currentLevel.value,
+                          feature.buildingName ?? "")
+                      .first;
+
+                  print("1");
+                  Get.back();
+                  if (navController.position.value == null) {
+                    print("2");
+                    Get.snackbar(
+                      "Navigation failed!",
+                      "Please set your position first!",
+                      snackPosition: SnackPosition.BOTTOM,
+                      margin: const EdgeInsets.only(
+                          bottom: 20, left: 10, right: 10),
+                      colorText: Colors.white,
+                      backgroundColor: Colors.red,
+                      duration: const Duration(seconds: 3),
+                    );
+                  } else {
+                    print("3");
+                    navController.navigate(navController.position.value!,
+                        (feature) => feature.id == wrapped.id);
+                  }
+                  print("4");
+                },
               ),
             ],
           )

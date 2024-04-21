@@ -44,6 +44,19 @@ class GraphFeature with _$GraphFeature {
         basicFeature: (floor, building, feature) => feature.id,
       );
 
+  // String? get buildingName => when(
+  //       buildingFloor: (floor, building) => building.name,
+  //       portal: (fromFloor, from, toFloor, to, baseFeature) =>
+  //           baseFeature.type.maybeWhen(
+  //         door: (_) => null,
+  //         orElse: () => baseFeature.building,
+  //       ),
+  //       basicFeature: (floor, building, feature) => feature.type.maybeWhen(
+  //         door: (_) => null,
+  //         orElse: () => building,
+  //       ),
+  //     );
+
   @override
   String toString() {
     return when(
